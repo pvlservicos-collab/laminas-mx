@@ -103,14 +103,14 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
         <div className="w-full px-1 mb-5">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-sm font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              Você já criou sua figurinha 🔥
+              ¡Ya creaste tu estampita! 🔥
             </span>
             <span className="text-sm font-black text-copa-green" style={{ fontFamily: "var(--font-titulo)" }}>95%</span>
           </div>
           <div className="w-full rounded-full h-1.5 overflow-hidden" style={{ background: "rgba(0,35,149,0.15)" }}>
             <div className="h-1.5 rounded-full transition-all duration-700" style={{ width: "95%", background: "linear-gradient(90deg, #009C3B, #00c94d)" }} />
           </div>
-          <p className="text-xs mt-1 text-right" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,35,149,0.5)" }}>só falta confirmar</p>
+          <p className="text-xs mt-1 text-right" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,35,149,0.5)" }}>solo falta confirmar</p>
         </div>
 
         {/* Preview da figurinha */}
@@ -123,7 +123,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageUrl}
-                alt={nome ? `Figurinha de ${nome}` : "Figurinha personalizada"}
+                alt={nome ? `Estampita de ${nome}` : "Estampita personalizada"}
                 className="w-full aspect-[2/3] object-cover"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
@@ -138,7 +138,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
                     </p>
                     <p className="text-white text-[9px] font-bold tracking-widest whitespace-nowrap mt-1"
                       style={{ fontFamily: "var(--font-papernotes)", textShadow: "1px 1px 3px rgba(0,0,0,0.3)", opacity: 0.35 }}>
-                      minha-figurinha-copa2026 &nbsp;&nbsp; minha-figurinha-copa2026 &nbsp;&nbsp; minha-figurinha-copa2026
+                      mi-estampita-copa2026 &nbsp;&nbsp; mi-estampita-copa2026 &nbsp;&nbsp; mi-estampita-copa2026
                     </p>
                   </div>
                 ))}
@@ -162,18 +162,18 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
         </h1>
 
         <p className="text-lg md:text-xl text-copa-blue text-center font-bold mb-2" style={{ fontFamily: "var(--font-papernotes)" }}>
-          Sua figurinha está pronta!
+          ¡Tu estampita está lista!
         </p>
 
         <p className="text-base text-gray-600 text-center mb-6" style={{ fontFamily: "var(--font-papernotes)" }}>
-          Adquira sua figurinha HOJE e concorra a 1000 reais<br />Sorteio será realizado dia 11/06/2026
+          Adquiere tu estampita HOY y participa por 1000 dólares<br />El sorteo se realizará el 11/06/2026
         </p>
 
         <p
           className="text-5xl md:text-6xl text-copa-green text-center mb-6 relative inline-block shine-effect"
           style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}
         >
-          R$12,90
+          $12,90
         </p>
 
         <button
@@ -187,17 +187,17 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
           }}
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
-            ⚽ RECEBER MINHA FIGURINHA
+            ⚽ RECIBIR MI ESTAMPITA
           </span>
         </button>
 
         <p className="text-sm text-gray-600 text-center mt-3" style={{ fontFamily: "var(--font-papernotes)" }}>
-          ✅ Inclui download em alta qualidade
+          ✅ Incluye descarga en alta calidad
         </p>
 
         <div className="w-full mt-6">
           <p className="text-xs text-center mb-2 font-bold tracking-widest uppercase" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,35,149,0.5)" }}>
-            Últimas figurinhas geradas
+            Últimas estampitas generadas
           </p>
           <FigurinhasCarousel />
         </div>

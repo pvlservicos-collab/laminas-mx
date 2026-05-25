@@ -150,11 +150,11 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
           <div className="flex flex-col gap-5">
             <div className="text-center">
               <span className="text-4xl mb-2 block">✍️</span>
-              <h2 className="text-2xl md:text-3xl font-black" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+              <h2 className="text-2xl md:text-3xl font-black tracking-[0.1em]" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
                 ¿CUÁL ES EL NOMBRE DEL CRACK?
               </h2>
               <p className="text-base mt-1 opacity-70" style={{ fontFamily: "var(--font-papernotes)" }}>
-                El nombre que aparecerá en el cromo
+                El nombre que aparecerá en la estampita
               </p>
             </div>
             <div>
@@ -166,7 +166,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 maxLength={50}
                 autoComplete="name"
                 className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors placeholder:text-gray-400 bg-white"
-                style={{ fontFamily: "var(--font-papernotes)", borderColor: "#e5e7eb" }}
+                style={{ fontFamily: "var(--font-papernotes)", borderColor: "#e5e7eb", color: "#111" }}
                 onFocus={e => e.target.style.borderColor = "#006847"}
                 onBlur={e => e.target.style.borderColor = "#e5e7eb"}
               />
@@ -174,7 +174,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             </div>
 
             <div>
-              <label className="block text-lg font-bold mb-2" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+              <label className="block text-lg font-bold mb-2" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>
                 FOTO DEL CRACK
               </label>
               {photoPreview ? (
@@ -187,11 +187,11 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 <div className="flex gap-3">
                   <button type="button" onClick={() => fileInputRef.current?.click()} className="flex-1 border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer transition-colors hover:border-green-700 bg-white">
                     <span className="text-3xl block mb-1">🖼️</span>
-                    <p className="text-sm font-bold" style={{ fontFamily: "var(--font-titulo)" }}>Galería</p>
+                    <p className="text-sm font-bold" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>Galería</p>
                   </button>
                   <button type="button" onClick={() => cameraInputRef.current?.click()} className="flex-1 border-2 border-dashed border-gray-300 rounded-xl p-5 text-center cursor-pointer transition-colors hover:border-green-700 bg-white">
                     <span className="text-3xl block mb-1">📸</span>
-                    <p className="text-sm font-bold" style={{ fontFamily: "var(--font-titulo)" }}>Cámara</p>
+                    <p className="text-sm font-bold" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>Cámara</p>
                   </button>
                 </div>
               )}
@@ -207,7 +207,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
           <div className="flex flex-col gap-5">
             <div className="text-center">
               <span className="text-4xl mb-2 block">🎂</span>
-              <h2 className="text-2xl md:text-3xl font-black" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+              <h2 className="text-2xl md:text-3xl font-black tracking-[0.1em]" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
                 FECHA DE NACIMIENTO
               </h2>
               <p className="text-base mt-1 opacity-70" style={{ fontFamily: "var(--font-papernotes)" }}>
@@ -216,7 +216,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             </div>
             <div className="flex gap-3">
               <div className="flex-1">
-                <label className="block text-base font-bold mb-1" style={{ fontFamily: "Arial, sans-serif", color: "#006847" }}>DÍA</label>
+                <label className="block text-base font-bold mb-1" style={{ fontFamily: "Arial, sans-serif", color: "#111" }}>DÍA</label>
                 <select
                   value={birthDay}
                   onChange={(e) => {
@@ -226,7 +226,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                     }
                   }}
                   className="w-full px-3 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors bg-white cursor-pointer"
-                  style={{ fontFamily: "var(--font-papernotes)" }}
+                  style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
                 >
                   <option value="">--</option>
                   {Array.from({ length: 31 }, (_, i) => (
@@ -235,7 +235,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 </select>
               </div>
               <div className="flex-[1.3]">
-                <label className="block text-base font-bold mb-1" style={{ fontFamily: "Arial, sans-serif", color: "#006847" }}>MES</label>
+                <label className="block text-base font-bold mb-1" style={{ fontFamily: "Arial, sans-serif", color: "#111" }}>MES</label>
                 <select
                   value={birthMonth}
                   onChange={(e) => {
@@ -245,7 +245,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                     }
                   }}
                   className="w-full px-3 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors bg-white cursor-pointer"
-                  style={{ fontFamily: "var(--font-papernotes)" }}
+                  style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
                 >
                   <option value="">--</option>
                   {["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"].map((m, i) => (
@@ -254,7 +254,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 </select>
               </div>
               <div className="flex-1">
-                <label className="block text-base font-bold mb-1" style={{ fontFamily: "Arial, sans-serif", color: "#006847" }}>AÑO</label>
+                <label className="block text-base font-bold mb-1" style={{ fontFamily: "Arial, sans-serif", color: "#111" }}>AÑO</label>
                 <select
                   value={birthYear}
                   onChange={(e) => {
@@ -264,7 +264,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                     }
                   }}
                   className="w-full px-3 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors bg-white cursor-pointer"
-                  style={{ fontFamily: "var(--font-papernotes)" }}
+                  style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
                 >
                   <option value="">--</option>
                   {Array.from({ length: new Date().getFullYear() - 1920 + 1 }, (_, i) => new Date().getFullYear() - i).map((y) => (
@@ -277,7 +277,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
 
             {/* Teléfono */}
             <div>
-              <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+              <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>
                 TU WHATSAPP
               </label>
               <input
@@ -289,7 +289,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 autoComplete="tel"
                 inputMode="numeric"
                 className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors placeholder:text-gray-400 bg-white"
-                style={{ fontFamily: "var(--font-papernotes)" }}
+                style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
               />
               {errors.telefone && <p className="text-red-500 text-sm mt-1">{errors.telefone}</p>}
             </div>
@@ -301,18 +301,18 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
           <div className="flex flex-col gap-5">
             <div className="text-center">
               <span className="text-4xl mb-2 block">⭐</span>
-              <h2 className="text-2xl md:text-3xl font-black" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+              <h2 className="text-2xl md:text-3xl font-black tracking-[0.1em]" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
                 EQUIPO Y DATOS
               </h2>
               <p className="text-base mt-1 opacity-70" style={{ fontFamily: "var(--font-papernotes)" }}>
-                El equipo del corazón y los datos para el cromo
+                El equipo del corazón y los datos para la estampita
               </p>
             </div>
 
             {/* Peso y Altura */}
             <div className="flex gap-3">
               <div className="flex-1">
-                <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+                <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>
                   PESO (kg)
                 </label>
                 <input
@@ -322,11 +322,11 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                   placeholder="Ej: 70"
                   min={1} max={300}
                   className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors placeholder:text-gray-400 bg-white"
-                  style={{ fontFamily: "var(--font-papernotes)" }}
+                  style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
                 />
               </div>
               <div className="flex-1">
-                <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+                <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>
                   ALTURA (cm)
                 </label>
                 <input
@@ -336,14 +336,14 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                   placeholder="Ej: 175"
                   min={1} max={300}
                   className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors placeholder:text-gray-400 bg-white"
-                  style={{ fontFamily: "var(--font-papernotes)" }}
+                  style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
                 />
               </div>
             </div>
 
             {/* Equipo */}
             <div ref={clubeRef} className="relative">
-              <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}>
+              <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>
                 EQUIPO DEL CORAZÓN
               </label>
               <input
@@ -354,7 +354,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 placeholder="Escribe el nombre del equipo..."
                 maxLength={50}
                 className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors placeholder:text-gray-400 bg-white"
-                style={{ fontFamily: "var(--font-papernotes)" }}
+                style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
               />
               {showClubeList && (
                 <div className="absolute z-50 w-full mt-1 bg-white border-2 border-gray-200 rounded-xl shadow-lg max-h-40 overflow-y-auto">
@@ -407,7 +407,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             className="flex-1 text-white font-bold text-lg px-6 py-4 rounded-xl shadow-lg active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.15em]"
             style={{ fontFamily: "var(--font-titulo)", background: "#CE1126" }}
           >
-            {step === totalSteps ? "CREAR CROMO ⚽" : "SIGUIENTE →"}
+            {step === totalSteps ? "CREAR ESTAMPITA ⚽" : "SIGUIENTE →"}
           </button>
         </div>
       </div>

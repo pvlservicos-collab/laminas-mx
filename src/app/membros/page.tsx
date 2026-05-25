@@ -66,14 +66,14 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "rifa-sorte",
     section: "main",
-    name: "Rifa da Sorte",
-    desc: (<>Sorteio em 11/06/2026<br /><span style={{ color: "#059669", fontWeight: 700 }}>Você já está participando! ✅</span></>),
+    name: "Rifa de la Suerte",
+    desc: (<>Sorteo el 11/06/2026<br /><span style={{ color: "#059669", fontWeight: 700 }}>¡Ya estás participando! ✅</span></>),
     infoMode: true,
-    renderImage: (bought) => <ProductImg src="/sorteio.webp" alt="Rifa da Sorte" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/sorteio.webp" alt="Rifa de la Suerte" bought={bought} />,
     getDownloadUrl: () => null,
     boughtExtra: (
       <div style={{ border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "10px 12px", marginTop: 4 }}>
-        <p style={{ margin: "0 0 8px", fontSize: 10, fontWeight: 800, color: "#002395" }}>Resultado do sorteio:</p>
+        <p style={{ margin: "0 0 8px", fontSize: 10, fontWeight: 800, color: "#002395" }}>Resultado del sorteo:</p>
         <div style={{ minHeight: 40, borderRadius: 6, background: "#f8fafc" }} />
       </div>
     ),
@@ -81,11 +81,11 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "pacote-pdf",
     section: "main",
-    name: "Pacotinho Copa 2026",
-    desc: "Deixe a experiência mais imersiva com o PDF dos pacotinhos oficiais",
-    renderImage: (bought) => <ProductImg src="/kitembalagem.jpg" alt="Kit Embalagem Copa 2026" bought={bought} />,
+    name: "Paquete Copa 2026",
+    desc: "Haz la experiencia más inmersiva con el PDF de los paquetes oficiales",
+    renderImage: (bought) => <ProductImg src="/kitembalagem.jpg" alt="Kit Paquete Copa 2026" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HQ",
-    downloadLabel: "Baixar PDF",
+    downloadLabel: "Descargar PDF",
     checkBought: (d) =>
       d.items.some(i =>
         i.offer_name?.toLowerCase().includes("pacote") ||
@@ -100,9 +100,9 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "neymar",
     section: "main",
-    name: "Figurinha Neymar",
-    desc: "Camisa da seleção — pacote em PDF para impressão",
-    renderImage: (bought) => <ProductImg src="/figurinhaney.jpg" alt="Figurinha Neymar" bought={bought} />,
+    name: "Estampita Neymar",
+    desc: "Camiseta de la selección — paquete en PDF para impresión",
+    renderImage: (bought) => <ProductImg src="/figurinhaney.jpg" alt="Estampita Neymar" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT",
     checkBought: (d) =>
       d.items.some(i =>
@@ -117,9 +117,9 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "poster-a2",
     section: "main",
-    name: "Poster A4",
-    desc: "Baixe o PDF para imprimir e postar em sua casa",
-    renderImage: (bought) => <ProductImg src="/Posterpdf.jpg" alt="Poster A4 PDF" bought={bought} />,
+    name: "Póster A4",
+    desc: "Descarga el PDF para imprimir y decorar tu casa",
+    renderImage: (bought) => <ProductImg src="/Posterpdf.jpg" alt="Póster A4 PDF" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HR",
     checkBought: (d) =>
       d.items.some(i =>
@@ -134,11 +134,11 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "3x",
     section: "sorteio",
-    name: "Pacote 3×",
-    desc: "Figurinha em grade 3×3 para impressão — 9 unidades por folha",
-    renderImage: (bought) => <ProductImg src="/3k.jpg" alt="Pacote 3x" bought={bought} />,
+    name: "Paquete 3×",
+    desc: "Estampita en cuadrícula 3×3 para impresión — 9 unidades por hoja",
+    renderImage: (bought) => <ProductImg src="/3k.jpg" alt="Paquete 3x" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HP",
-    boughtMessage: "Você já aumentou suas chances",
+    boughtMessage: "¡Ya aumentaste tus chances!",
     checkBought: (d) =>
       d.items.some(i =>
         i.offer_name?.toLowerCase().includes("3x") ||
@@ -151,11 +151,11 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "10x",
     section: "sorteio",
-    name: "Pacote 10×",
-    desc: "10 folhas com sua figurinha — máximo para presentear",
-    renderImage: (bought) => <ProductImg src="/10x.jpg" alt="Pacote 10x" bought={bought} />,
+    name: "Paquete 10×",
+    desc: "10 hojas con tu estampita — máximo para regalar",
+    renderImage: (bought) => <ProductImg src="/10x.jpg" alt="Paquete 10x" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HS",
-    boughtMessage: "Você já aumentou suas chances",
+    boughtMessage: "¡Ya aumentaste tus chances!",
     checkBought: (d) =>
       d.items.some(i =>
         i.offer_name?.toLowerCase().includes("10x") ||
@@ -197,7 +197,7 @@ function StickerCard({ pedido }: { pedido: Pedido }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={pedido.preview_url || pedido.sticker_url}
-          alt={pedido.nome || "figurinha"}
+          alt={pedido.nome || "estampita"}
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
         <div style={{
@@ -206,7 +206,7 @@ function StickerCard({ pedido }: { pedido: Pedido }) {
         }} />
         <div style={{ position: "absolute", bottom: 12, left: 12, right: 12 }}>
           <p style={{ color: "#fff", fontSize: 13, fontWeight: 800, margin: 0, textShadow: "0 1px 4px rgba(0,0,0,.5)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            {pedido.nome || "Figurinha"}
+            {pedido.nome || "Estampita"}
           </p>
           <p style={{ color: "rgba(255,255,255,.75)", fontSize: 11, margin: "2px 0 0" }}>{pedido.clube || "Copa 2026"}</p>
         </div>
@@ -220,12 +220,12 @@ function StickerCard({ pedido }: { pedido: Pedido }) {
       <div style={{ padding: "14px 14px 14px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <a
-            href={`/api/download?url=${encodeURIComponent(pedido.sticker_url)}&name=figurinha-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
+            href={`/api/download?url=${encodeURIComponent(pedido.sticker_url)}&name=estampita-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
             style={{ display: "block", textAlign: "center", background: "#002395", color: "#fff", borderRadius: 10, padding: "10px 8px", fontSize: 12, fontWeight: 700, textDecoration: "none", letterSpacing: ".03em" }}
-          >⬇ Baixar PNG</a>
+          >⬇ Descargar PNG</a>
           {pedido.pdf_url && (
             <a
-              href={`/api/download?url=${encodeURIComponent(pedido.pdf_url)}&name=figurinha-pdf-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
+              href={`/api/download?url=${encodeURIComponent(pedido.pdf_url)}&name=estampita-pdf-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
               style={{ display: "block", textAlign: "center", background: "#f8fafc", color: "#334155", borderRadius: 10, padding: "10px 8px", fontSize: 12, fontWeight: 700, textDecoration: "none", border: "1px solid #e2e8f0" }}
             >📄 PDF</a>
           )}
@@ -311,7 +311,7 @@ function CatalogCard({ product, data, width = 240 }: { product: CatalogProduct; 
                 textAlign: "center", background: "#f0fdf4",
                 color: "#166534", borderRadius: 12, padding: "11px 8px", fontSize: 13, fontWeight: 700,
                 border: "1px solid #bbf7d0",
-              }}>{product.boughtMessage || "✓ Disponível"}</div>
+              }}>{product.boughtMessage || "✓ Disponible"}</div>
             ) : product.acquireUrl ? (
               <a
                 href={product.acquireUrl}
@@ -322,7 +322,7 @@ function CatalogCard({ product, data, width = 240 }: { product: CatalogProduct; 
                   textDecoration: "none", letterSpacing: ".03em",
                   boxShadow: "0 4px 12px rgba(255,223,0,.4)",
                 }}
-              >Adquira agora</a>
+              >Adquirir ahora</a>
             ) : null}
           </>
         )}
@@ -378,13 +378,13 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
       const url = URL.createObjectURL(pdfBlob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = layout === "a4" ? "poster-completo-a4.pdf" : "poster-figurinha-4x4.pdf";
+      a.download = layout === "a4" ? "poster-completo-a4.pdf" : "poster-estampita-4x4.pdf";
       a.click();
       URL.revokeObjectURL(url);
     } catch {
-      if (isUpload && isB) setUploadErrorB("Falha ao gerar. Tente novamente.");
-      else if (isUpload) setUploadError("Falha ao gerar. Tente novamente.");
-      else setGenError("Falha ao gerar. Tente novamente.");
+      if (isUpload && isB) setUploadErrorB("Error al generar. Intenta de nuevo.");
+      else if (isUpload) setUploadError("Error al generar. Intenta de nuevo.");
+      else setGenError("Error al generar. Intenta de nuevo.");
     } finally {
       if (isUpload && isB) setUploadLoadingB(false);
       else if (isUpload) setUploadLoading(false);
@@ -409,7 +409,7 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
           textAlign: "center", cursor: "pointer", background: "#f8fafc", minWidth: 0,
         }}>
           <p style={{ margin: 0, fontSize: 9, color: file ? "#334155" : "#94a3b8", fontWeight: file ? 600 : 400, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            {file ? file.name : "Selecionar imagem"}
+            {file ? file.name : "Seleccionar imagen"}
           </p>
         </div>
         <button onClick={() => file && runGenerate(file, layout)} disabled={loading || !file} style={{
@@ -457,7 +457,7 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
         {/* Body */}
         <div style={{ padding: "14px 16px 16px" }}>
           <p style={{ margin: "0 0 2px", fontSize: 15, fontWeight: 800, color: "#0f172a", lineHeight: 1.25 }}>Poster A4</p>
-          <p style={{ margin: "0 0 12px", fontSize: 11, color: "#64748b", lineHeight: 1.4 }}>PDF para imprimir e decorar em casa</p>
+          <p style={{ margin: "0 0 12px", fontSize: 11, color: "#64748b", lineHeight: 1.4 }}>PDF para imprimir y decorar en casa</p>
 
           {bought ? (
             <>
@@ -467,12 +467,12 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
                 cursor: genLoading || !stickerUrl ? "default" : "pointer",
                 opacity: genLoading || !stickerUrl ? 0.7 : 1, letterSpacing: ".03em",
               }}>
-                {genLoading ? "Gerando PDF..." : "⬇ Baixar PDF 4×4"}
+                {genLoading ? "Generando PDF..." : "⬇ Descargar PDF 4×4"}
               </button>
               {genError && <p style={{ color: "#dc2626", fontSize: 11, margin: "4px 0 0", textAlign: "center" }}>{genError}</p>}
 
               <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1.5px solid #f1f5f9", display: "flex", flexDirection: "column", gap: 10 }}>
-                <p style={{ margin: "0 0 6px", fontSize: 11, color: "#64748b" }}>Gerar com outra foto:</p>
+                <p style={{ margin: "0 0 6px", fontSize: 11, color: "#64748b" }}>Generar con otra foto:</p>
                 <UploadSection file={uploadFile} setFile={setUploadFile} loading={uploadLoading} error={uploadError} layout="grid" inputR={inputRef} />
                 <UploadSection file={uploadFileB} setFile={setUploadFileB} loading={uploadLoadingB} error={uploadErrorB} layout="a4" inputR={inputRefB} />
               </div>
@@ -509,7 +509,7 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
       border: bought ? "2px solid #002395" : "2px solid transparent",
     }}>
       <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", overflow: "hidden" }}>
-        <ProductImg src="/figurinhaney.jpg" alt="Figurinha Neymar" bought={bought} />
+        <ProductImg src="/figurinhaney.jpg" alt="Estampita Neymar" bought={bought} />
         {!bought && (
           <div style={{
             position: "absolute", inset: 0, background: "rgba(15,15,15,.5)",
@@ -527,8 +527,8 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
         )}
       </div>
       <div style={{ padding: "16px 18px 18px" }}>
-        <p style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 800, color: "#0f172a", lineHeight: 1.25 }}>Figurinha Neymar</p>
-        <p style={{ margin: "0 0 14px", fontSize: 12, color: "#64748b", lineHeight: 1.5 }}>Figurinha exclusiva do neymar para download em PNG ou em PDF para impressão</p>
+        <p style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 800, color: "#0f172a", lineHeight: 1.25 }}>Estampita Neymar</p>
+        <p style={{ margin: "0 0 14px", fontSize: 12, color: "#64748b", lineHeight: 1.5 }}>Estampita exclusiva de Neymar para descargar en PNG o en PDF para impresión</p>
         {bought ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <a
@@ -540,17 +540,17 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
                 borderRadius: 12, padding: "11px 8px", fontSize: 13, fontWeight: 700,
                 textDecoration: "none", letterSpacing: ".03em",
               }}
-            >⬇ Baixar PNG</a>
+            >⬇ Descargar PNG</a>
             <a
               href="/figurinha-neymar-impressão-grade-4x4.pdf"
-              download="figurinha-neymar-grade-4x4.pdf"
+              download="estampita-neymar-grade-4x4.pdf"
               style={{
                 display: "block", textAlign: "center",
                 background: "#f8fafc", color: "#334155",
                 borderRadius: 12, padding: "11px 8px", fontSize: 13, fontWeight: 700,
                 textDecoration: "none", border: "1px solid #e2e8f0",
               }}
-            >📄 Baixar PDF</a>
+            >📄 Descargar PDF</a>
           </div>
         ) : (
           <a
@@ -611,16 +611,16 @@ function MembrosContent() {
 
   const fetchMember = async (fone: string) => {
     const digits = fone.replace(/\D/g, "");
-    if (digits.length < 10) { setError("Digite um número de WhatsApp válido com DDD."); return; }
+    if (digits.length < 10) { setError("Ingresa un número de WhatsApp válido con código de área."); return; }
     setLoading(true);
     setError(null);
     try {
       const res = await fetch(`/api/membros?fone=${digits}`);
-      if (res.status === 404) { setError("Nenhuma compra encontrada para esse número. Verifique se digitou corretamente."); setData(null); return; }
+      if (res.status === 404) { setError("No se encontró ninguna compra para ese número. Verifica si lo ingresaste correctamente."); setData(null); return; }
       if (!res.ok) throw new Error();
       setData(await res.json());
     } catch {
-      setError("Erro ao buscar. Tente novamente.");
+      setError("Error al buscar. Intenta de nuevo.");
     } finally {
       setLoading(false);
     }
@@ -648,14 +648,14 @@ function MembrosContent() {
         }}>
           <span style={{ fontSize: 18 }}>⚽</span>
           <span className="membros-badge" style={{ color: "#002395", fontWeight: 800, fontSize: 13, letterSpacing: ".12em", textTransform: "uppercase" }}>
-            Figurinha Copa 2026
+            Estampita Copa 2026
           </span>
         </div>
         <h1 className="membros-h1" style={{ color: "#002395", fontSize: 28, fontWeight: 900, margin: "0 0 8px", letterSpacing: ".06em", whiteSpace: "nowrap" }}>
-          ÁREA DE ENTREGÁVEIS
+          ÁREA DE ENTREGABLES
         </h1>
         <p style={{ color: "rgba(0,35,149,.6)", fontSize: 14, margin: 0, fontWeight: 500 }}>
-          Acesse todos os seus produtos comprados
+          Accede a todos tus productos comprados
         </p>
       </div>
 
@@ -670,10 +670,10 @@ function MembrosContent() {
             <div style={{ textAlign: "center", marginBottom: 24 }}>
               <div style={{ fontSize: 40, marginBottom: 10 }}>🏆</div>
               <h2 style={{ fontSize: 20, fontWeight: 800, color: "#002395", margin: "0 0 6px" }}>
-                Entrar com seu WhatsApp
+                Ingresar con tu WhatsApp
               </h2>
               <p style={{ fontSize: 13, color: "#64748b", margin: 0 }}>
-                Use o mesmo número cadastrado na compra
+                Usa el mismo número registrado en la compra
               </p>
             </div>
             <input
@@ -700,7 +700,7 @@ function MembrosContent() {
                 letterSpacing: ".06em", textTransform: "uppercase",
               }}
             >
-              {loading ? "Buscando..." : "ACESSAR MEUS PRODUTOS →"}
+              {loading ? "Buscando..." : "ACCEDER A MIS PRODUCTOS →"}
             </button>
           </div>
         )}
@@ -725,7 +725,7 @@ function MembrosContent() {
                 }}>⚽</div>
                 <div>
                   <p style={{ color: "rgba(255,255,255,.5)", fontSize: 11, margin: "0 0 2px", textTransform: "uppercase", letterSpacing: ".08em", fontWeight: 700 }}>
-                    Área de membros
+                    Área de miembros
                   </p>
                   <p style={{ color: "#fff", fontSize: 20, fontWeight: 900, margin: 0, letterSpacing: "-.01em" }}>
                     {data.nome || "Cliente"}
@@ -740,19 +740,19 @@ function MembrosContent() {
                   borderRadius: 10, padding: "8px 16px", fontSize: 12, cursor: "pointer", fontWeight: 600,
                 }}
               >
-                Trocar número
+                Cambiar número
               </button>
             </div>
 
             {/* Row 1 — Figurinhas personalizadas */}
             {data.pedidos.length > 0 && (
-              <ProductRow title={`Suas Figurinhas (${data.pedidos.length})`}>
+              <ProductRow title={`Tus Estampitas (${data.pedidos.length})`}>
                 {data.pedidos.map(p => <StickerCard key={p.id} pedido={p} />)}
               </ProductRow>
             )}
 
             {/* Row 2 — Produtos principais */}
-            <ProductRow title="Produtos Copa 2026">
+            <ProductRow title="Productos Copa 2026">
               {CATALOG.filter(p => p.section === "main").map(product =>
                 product.renderCard
                   ? <div key={product.id} style={{ flexShrink: 0, scrollSnapAlign: "start" }}>{product.renderCard(data, 250)}</div>
@@ -761,7 +761,7 @@ function MembrosContent() {
             </ProductRow>
 
             {/* Row 3 — Aumente suas chances */}
-            <ProductRow title="AUMENTE SUAS CHANCES NO SORTEIO" accent>
+            <ProductRow title="AUMENTA TUS CHANCES EN EL SORTEO" accent>
               {CATALOG.filter(p => p.section === "sorteio").map(product =>
                 product.renderCard
                   ? <div key={product.id} style={{ flexShrink: 0, scrollSnapAlign: "start" }}>{product.renderCard(data, 240)}</div>
@@ -776,7 +776,7 @@ function MembrosContent() {
                 target="_blank" rel="noopener noreferrer"
                 style={{ color: "rgba(0,35,149,.5)", fontSize: 13, textDecoration: "underline", fontWeight: 500 }}
               >
-                Problema com algum produto? Fale com o suporte
+                ¿Problema con algún producto? Habla con el soporte
               </a>
             </div>
           </>

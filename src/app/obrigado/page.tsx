@@ -21,20 +21,20 @@ async function fetchWithRetry(url: string, attempts = 3): Promise<Response> {
 
 const FAQ_ITEMS = [
   {
-    q: "Quando vou receber minha figurinha?",
-    a: "Sua figurinha é gerada automaticamente aqui nesta página e se não apareceu você também pode baixar nesta página colocando seu número no formulário.",
+    q: "¿Cuándo recibiré mi estampita?",
+    a: "Tu estampita se genera automáticamente aquí en esta página. Si no aparece, puedes buscarla ingresando tu número en el formulario de abajo.",
   },
   {
-    q: "Comprei mais de 1 produto",
-    a: "Use o bloco 'Comprou mais de 1 produto?' abaixo, digite seu número e acesse a área de entregáveis com todos os seus produtos.",
+    q: "Compré más de 1 producto",
+    a: "Usa el bloque '¿Compraste más de 1 producto?' abajo, ingresa tu número y accede al área de entregas con todos tus productos.",
   },
   {
-    q: "Como baixo minha figurinha?",
-    a: "Clique no botão '⬇ BAIXAR MINHA FIGURINHA' que aparece abaixo da imagem. O arquivo será salvo no seu celular ou computador.",
+    q: "¿Cómo descargo mi estampita?",
+    a: "Haz clic en el botón '⬇ DESCARGAR MI ESTAMPITA' que aparece debajo de la imagen. El archivo se guardará en tu celular o computadora.",
   },
   {
-    q: "Posso usar em qualquer álbum?",
-    a: "Sua figurinha é uma imagem digital (PNG) pronta para compartilhar no WhatsApp, redes sociais ou imprimir em casa.",
+    q: "¿Puedo usarla en cualquier álbum?",
+    a: "Tu estampita es una imagen digital (PNG) lista para compartir en WhatsApp, redes sociales o imprimir en casa.",
   },
 ];
 
@@ -61,7 +61,7 @@ function FaqBubble() {
             borderRadius: 20, padding: "8px 14px", boxShadow: "0 4px 20px rgba(0,0,0,.25)",
             whiteSpace: "nowrap", animation: "fadeInLabel .3s ease",
           }}>
-            Alguma dúvida?
+            ¿Alguna duda?
           </div>
         )}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
@@ -76,7 +76,7 @@ function FaqBubble() {
               padding: 0, overflow: "hidden",
               transition: "transform .2s",
             }}
-            aria-label="Dúvidas frequentes"
+            aria-label="Preguntas frecuentes"
           >
             {open ? (
               <span style={{ color: "#fff", fontSize: 28, fontWeight: 700 }}>✕</span>
@@ -94,7 +94,7 @@ function FaqBubble() {
             fontSize: 10, fontWeight: 800, letterSpacing: ".08em",
             borderRadius: 6, padding: "3px 10px",
           }}>
-            SUPORTE
+            SOPORTE
           </div>
         </div>
       </div>
@@ -109,8 +109,8 @@ function FaqBubble() {
           overflow: "hidden", animation: "slideUp .25s ease",
         }}>
           <div style={{ background: "linear-gradient(135deg, #002395, #0040cc)", padding: "16px 20px" }}>
-            <p style={{ color: "#fff", fontWeight: 800, fontSize: 15, margin: 0 }}>Perguntas frequentes</p>
-            <p style={{ color: "rgba(255,255,255,.65)", fontSize: 12, margin: "2px 0 0" }}>Respostas rápidas para você</p>
+            <p style={{ color: "#fff", fontWeight: 800, fontSize: 15, margin: 0 }}>Preguntas frecuentes</p>
+            <p style={{ color: "rgba(255,255,255,.65)", fontSize: 12, margin: "2px 0 0" }}>Respuestas rápidas para ti</p>
           </div>
           <div style={{ padding: "8px 0", maxHeight: 340, overflowY: "auto" }}>
             {FAQ_ITEMS.map((item, i) => (
@@ -139,7 +139,7 @@ function FaqBubble() {
               target="_blank" rel="noopener noreferrer"
               style={{ color: "#25d366", fontSize: 13, fontWeight: 700, textDecoration: "none" }}
             >
-              💬 Falar com suporte
+              💬 Hablar con soporte
             </a>
           </div>
         </div>
@@ -207,16 +207,16 @@ export default function Obrigado() {
 
   const handleBuscarFigurinha = async () => {
     const digits = searchPhone.replace(/\D/g, "");
-    if (digits.length < 10) { setSearchError("Digite um telefone válido com DDD."); return; }
+    if (digits.length < 10) { setSearchError("Ingresa un teléfono válido con código de área."); return; }
     setSearchLoading(true);
     setSearchError(null);
     try {
       const res = await fetch(`/api/sticker?email=${encodeURIComponent(digits)}`);
       const data = await res.json();
       if (data.url) { setStickerUrl(data.url); setSearchError(null); }
-      else setSearchError("Figurinha não encontrada. Verifique o número e tente novamente.");
+      else setSearchError("Estampita no encontrada. Verifica el número e intenta de nuevo.");
     } catch {
-      setSearchError("Erro ao buscar. Tente novamente.");
+      setSearchError("Error al buscar. Intenta de nuevo.");
     } finally {
       setSearchLoading(false);
     }
@@ -227,25 +227,25 @@ export default function Obrigado() {
     const a = document.createElement("a");
     if (stickerUrl.startsWith("data:")) {
       a.href = stickerUrl;
-      a.download = "minha-figurinha-copa2026.png";
+      a.download = "mi-estampita-copa2026.png";
     } else {
-      a.href = `/api/download?url=${encodeURIComponent(stickerUrl)}&name=minha-figurinha-copa2026`;
+      a.href = `/api/download?url=${encodeURIComponent(stickerUrl)}&name=mi-estampita-copa2026`;
     }
     a.click();
   };
 
   const handleMemberLogin = async () => {
     const digits = memberPhone.replace(/\D/g, "");
-    if (digits.length < 10) { setMemberError("Digite um telefone válido com DDD."); return; }
+    if (digits.length < 10) { setMemberError("Ingresa un teléfono válido con código de área."); return; }
     setMemberLoading(true);
     setMemberError(null);
     try {
       const res = await fetch(`/api/membros?fone=${digits}`);
-      if (res.status === 404) { setMemberError("Nenhuma compra encontrada para esse número."); return; }
+      if (res.status === 404) { setMemberError("No se encontró ninguna compra para ese número."); return; }
       if (!res.ok) throw new Error();
       router.push(`/membros?fone=${digits}`);
     } catch {
-      setMemberError("Erro ao verificar. Tente novamente.");
+      setMemberError("Error al verificar. Intenta de nuevo.");
     } finally {
       setMemberLoading(false);
     }
@@ -267,17 +267,17 @@ export default function Obrigado() {
           background: "rgba(0,35,149,.12)", borderRadius: 12, padding: "8px 18px", marginBottom: 20,
         }}>
           <span style={{ fontSize: 20 }}>⚽</span>
-          <span style={{ color: "#002395", fontWeight: 800, fontSize: 13, letterSpacing: ".1em" }}>FIGURINHA COPA 2026</span>
+          <span style={{ color: "#002395", fontWeight: 800, fontSize: 13, letterSpacing: ".1em" }}>ESTAMPA DEL MUNDIAL 2026</span>
         </div>
         <h1 style={{
           color: "#002395", fontSize: "clamp(36px, 8vw, 64px)", fontWeight: 900,
           margin: "0 0 10px", letterSpacing: ".08em",
           fontFamily: "var(--font-titulo, 'Arial Black', sans-serif)",
         }}>
-          OBRIGADO!
+          ¡GRACIAS!
         </h1>
         <p style={{ color: "#002395", fontSize: 16, margin: 0, fontWeight: 600 }}>
-          Seu pagamento foi confirmado ✓
+          Tu pago fue confirmado ✓
         </p>
       </div>
 
@@ -297,8 +297,8 @@ export default function Obrigado() {
                 Oferta exclusiva
               </p>
               <p style={{ margin: 0, fontSize: 16, fontWeight: 900, color: "#002395", lineHeight: 1.25 }}>
-                Gere sua segunda figurinha por apenas{" "}
-                <span style={{ color: "#009C3B" }}>R$7,90</span>
+                Genera tu segunda estampa por solo{" "}
+                <span style={{ color: "#009C3B" }}>$7,90</span>
               </p>
             </div>
             <a
@@ -329,7 +329,7 @@ export default function Obrigado() {
                 boxShadow: "0 4px 16px rgba(0,35,149,.35)",
               }}
             >
-              QUERO! ⚽
+              ¡LA QUIERO! ⚽
             </a>
           </div>
         </div>
@@ -359,7 +359,7 @@ export default function Obrigado() {
                       letterSpacing: ".06em", textTransform: "uppercase",
                     }}
                   >
-                    ⬇ BAIXAR MINHA FIGURINHA
+                    ⬇ DESCARGAR MI ESTAMPITA
                   </button>
                 </>
               ) : null}
@@ -369,12 +369,12 @@ export default function Obrigado() {
           {/* Não recebeu */}
           <div style={{ padding: "24px 28px" }}>
             <h2 style={{ fontSize: 17, fontWeight: 800, color: "#002395", margin: "0 0 6px", display: "flex", alignItems: "center", gap: 8 }}>
-              📱 Não recebeu a figurinha?
+              📱 ¿No recibiste tu estampa?
             </h2>
             <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 14px" }}>
               {stickerUrl
-                ? "Sua figurinha está aparecendo acima. Use o botão para baixar."
-                : "Digite seu número de WhatsApp para encontrá-la (SEM +55)."}
+                ? "Tu estampita aparece arriba. Usa el botón para descargar."
+                : "Ingresa tu número de WhatsApp para encontrarla (SIN +55)."}
             </p>
 
             {!stickerUrl && (
@@ -382,7 +382,7 @@ export default function Obrigado() {
                 <input
                   type="tel"
                   inputMode="numeric"
-                  placeholder="Ex: 11998765432"
+                  placeholder="Ejemplo: 11998765432"
                   value={searchPhone}
                   maxLength={15}
                   disabled={searchLoading}
@@ -422,17 +422,17 @@ export default function Obrigado() {
           border: "2px solid #002395",
         }}>
           <h2 style={{ fontSize: 17, fontWeight: 800, color: "#002395", margin: "0 0 6px", display: "flex", alignItems: "center", gap: 8 }}>
-            🏆 Comprou mais de 1 produto?
+            🏆 ¿Compraste más de 1 producto?
           </h2>
           <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 16px" }}>
-            Logue em nossa área de entregáveis com o seu número para acessar todos os seus produtos.
+            Inicia sesión en nuestra área de entregas con tu número para acceder a todos tus productos.
           </p>
 
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <input
               type="tel"
               inputMode="numeric"
-              placeholder="Ex: 11998765432"
+              placeholder="Ejemplo: 11998765432"
               value={memberPhone}
               maxLength={15}
               disabled={memberLoading}
@@ -475,7 +475,7 @@ export default function Obrigado() {
             textDecoration: "underline", padding: "8px",
           }}
         >
-          Criar nova figurinha
+          Crear nueva estampita
         </a>
       </div>
 

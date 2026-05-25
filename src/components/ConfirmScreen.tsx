@@ -31,7 +31,7 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
       style={{ background: "#006847" }}
     >
       {/* Card — fundo branco */}
-      <div className="bg-white rounded-2xl w-full max-w-sm shadow-lg overflow-hidden animate-slide-up">
+      <div className="bg-white rounded-2xl w-full max-w-lg shadow-lg overflow-hidden animate-slide-up">
 
         {/* Progress bar */}
         <div className="px-5 pt-5 pb-2">
@@ -51,17 +51,15 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
         {/* Body */}
         <div className="px-5 pb-6 pt-4 flex flex-col items-center">
 
-          <div className="text-4xl mb-3">⚠️</div>
-
           <h2
-            className="text-2xl font-bold text-center mb-3 tracking-wide"
+            className="text-2xl font-bold text-center mb-3 tracking-[0.12em]"
             style={{ fontFamily: "var(--font-titulo)", color: "#006847" }}
           >
             REVISA TUS DATOS
           </h2>
 
           <p className="text-sm text-gray-600 text-center mb-1" style={{ fontFamily: "var(--font-papernotes)" }}>
-            El cromo se generará en breve. Revisa los datos con cuidado.
+            La estampita se generará en breve. Revisa los datos con cuidado.
           </p>
           <p className="text-sm font-bold text-gray-800 text-center mb-5" style={{ fontFamily: "var(--font-papernotes)" }}>
             No realizamos cambios después de la aprobación y el pago.
@@ -109,7 +107,7 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
               shadow-lg active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.1em] mb-3"
             style={{ fontFamily: "var(--font-titulo)", background: "#CE1126" }}
           >
-            ENTENDIDO, ¡CREAR CROMO! ⚽
+            ENTENDIDO, ¡CREAR ESTAMPITA! ⚽
           </button>
 
           {/* Botón regresar */}

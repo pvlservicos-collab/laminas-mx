@@ -166,7 +166,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
         </p>
 
         <p className="text-base text-gray-600 text-center mb-6" style={{ fontFamily: "var(--font-papernotes)" }}>
-          Adquiere tu estampita HOY y participa por 1000 dólares<br />El sorteo se realizará el 11/06/2026
+          Adquiere tu estampita HOY y participa por <strong>un boleto al Mundial</strong><br />Sorteo el 11/07/2026 ⚽
         </p>
 
         <p

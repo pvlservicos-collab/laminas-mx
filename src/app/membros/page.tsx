@@ -67,7 +67,7 @@ const CATALOG: CatalogProduct[] = [
     id: "rifa-sorte",
     section: "main",
     name: "Rifa de la Suerte",
-    desc: (<>Sorteo el 11/06/2026<br /><span style={{ color: "#059669", fontWeight: 700 }}>¡Ya estás participando! ✅</span></>),
+    desc: (<>Sorteo el 11/07/2026<br /><span style={{ color: "#059669", fontWeight: 700 }}>¡Ya estás participando! ✅</span></>),
     infoMode: true,
     renderImage: (bought) => <ProductImg src="/sorteio.webp" alt="Rifa de la Suerte" bought={bought} />,
     getDownloadUrl: () => null,

@@ -175,7 +175,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             className="text-base text-center mb-6"
             style={{ fontFamily: "var(--font-papernotes)", color: "rgba(255,255,255,0.85)" }}
           >
-            Obtén tu cromo HOY y participa por $1,000 dólares<br />Sorteo el día 11/06/2026
+            Obtén tu cromo HOY y participa por <strong>un boleto al Mundial</strong><br />Sorteo el 11/07/2026 ⚽
           </p>
 
           {/* Precio */}

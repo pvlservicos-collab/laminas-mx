@@ -385,7 +385,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
       {appStep === "loading-photo" && (
         <LoadingScreen
           title="CARGANDO FOTO"
-          gifUrl="https://media.giphy.com/media/fZ8WMGOehsDRAAWJNL/giphy.gif"
+          gifUrl="https://media.giphy.com/media/5tkGBzZs4JzG57JiJg/giphy.gif"
         />
       )}
 
@@ -409,7 +409,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
       {appStep === "loading-generate" && (
         <LoadingScreen
           title="GENERANDO TU ESTAMPITA"
-          gifUrl="/sorteio.webp"
+          gifUrl="https://media.giphy.com/media/5tkGBzZs4JzG57JiJg/giphy.gif"
           longWait
           startTime={genStartTime}
         />

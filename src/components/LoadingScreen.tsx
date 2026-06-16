@@ -113,10 +113,10 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
               ¡Obtén tu estampita HOY y participa por
             </p>
             <p className="text-4xl font-black my-1" style={{ fontFamily: "var(--font-titulo)", color: "#CE1126" }}>
-              MIL DÓLARES
+              UN BOLETO AL MUNDIAL
             </p>
             <p className="text-base font-bold" style={{ fontFamily: "var(--font-papernotes)", color: "#006847" }}>
-              el día 11/06/2026, inicio de los juegos.
+              Sorteo el 11/07/2026 ⚽
             </p>
           </div>
         )}

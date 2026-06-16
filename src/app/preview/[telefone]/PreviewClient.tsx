@@ -162,11 +162,11 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
         </h1>
 
         <p className="text-lg md:text-xl text-copa-blue text-center font-bold mb-2" style={{ fontFamily: "var(--font-papernotes)" }}>
-          ¡Tu estampita está lista!
+          ¡Tu estampita está lista! Realiza el pago para liberar la descarga...
         </p>
 
         <p className="text-base text-gray-600 text-center mb-6" style={{ fontFamily: "var(--font-papernotes)" }}>
-          Adquiere tu estampita HOY y participa por <strong>un boleto al Mundial</strong><br />Sorteo el 11/07/2026 ⚽
+          Adquiere tu estampita HOY y participa por <strong>un boleto al Mundial</strong><br />Sorteo el 11/07/2026
         </p>
 
         <p
@@ -187,12 +187,12 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
           }}
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
-            ⚽ RECIBIR MI ESTAMPITA
+            LIBERAR MI ESTAMPITA
           </span>
         </button>
 
-        <p className="text-sm text-gray-600 text-center mt-3" style={{ fontFamily: "var(--font-papernotes)" }}>
-          ✅ Incluye descarga en alta calidad
+        <p className="text-xs text-center mt-3 tracking-widest uppercase" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,35,149,0.5)" }}>
+          Foto o información pueden ajustarse después del pago
         </p>
 
         <div className="w-full mt-6">

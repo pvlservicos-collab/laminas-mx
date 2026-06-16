@@ -186,7 +186,7 @@ INSTRUCTIONS:
 
 1. REMOVE the adult athlete from Image 2 entirely.
 
-2. GENERATE a chest-up portrait of the subject wearing the Mexico 2026 national team jersey (dark green body #006847, red collar and sleeve trim #CE1126, FMF badge on left chest), facing forward, arms down.
+2. GENERATE a chest-up portrait of the subject wearing the Mexico 2026 national team jersey (dark green body #006847, red collar and sleeve trim #CE1126), facing forward, arms down.
 
    BODY PROPORTIONS — CRITICAL:
    - Use the subject's FACE from Image 1 as your scale anchor. The shoulders, torso, and jersey must be sized to fit that face naturally.

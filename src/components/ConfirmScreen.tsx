@@ -59,7 +59,7 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
           </h2>
 
           <p className="text-sm text-gray-600 text-center mb-1" style={{ fontFamily: "var(--font-papernotes)" }}>
-            La estampita se generará en breve. Revisa los datos con cuidado.
+            La figurita se generará en breve. Revisa los datos con cuidado.
           </p>
           <p className="text-sm font-bold text-gray-800 text-center mb-5" style={{ fontFamily: "var(--font-papernotes)" }}>
             No realizamos cambios después de la aprobación y el pago.
@@ -107,7 +107,7 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
               shadow-lg active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.1em] mb-3"
             style={{ fontFamily: "var(--font-titulo)", background: "#CE1126" }}
           >
-            ENTENDIDO, ¡CREAR ESTAMPITA! ⚽
+            ENTENDIDO, ¡CREAR FIGURITA!
           </button>
 
           {/* Botón regresar */}

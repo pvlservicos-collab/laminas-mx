@@ -408,7 +408,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
 
       {appStep === "loading-generate" && (
         <LoadingScreen
-          title="GENERANDO TU ESTAMPITA"
+          title="GENERANDO TU FIGURITA"
           gifUrl="https://media.giphy.com/media/5tkGBzZs4JzG57JiJg/giphy.gif"
           longWait
           startTime={genStartTime}

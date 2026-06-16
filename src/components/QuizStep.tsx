@@ -154,7 +154,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 ¿CUÁL ES EL NOMBRE DEL CRACK?
               </h2>
               <p className="text-base mt-1 opacity-70" style={{ fontFamily: "var(--font-papernotes)" }}>
-                El nombre que aparecerá en la estampita
+                El nombre que aparecerá en la figurita
               </p>
             </div>
             <div>
@@ -305,7 +305,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
                 EQUIPO Y DATOS
               </h2>
               <p className="text-base mt-1 opacity-70" style={{ fontFamily: "var(--font-papernotes)" }}>
-                El equipo del corazón y los datos para la estampita
+                El equipo del corazón y los datos para la figurita
               </p>
             </div>
 
@@ -407,7 +407,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             className="flex-1 text-white font-bold text-lg px-6 py-4 rounded-xl shadow-lg active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.15em]"
             style={{ fontFamily: "var(--font-titulo)", background: "#CE1126" }}
           >
-            {step === totalSteps ? "CREAR ESTAMPITA ⚽" : "SIGUIENTE →"}
+            {step === totalSteps ? "CREAR FIGURITA ⚽" : "SIGUIENTE →"}
           </button>
         </div>
       </div>

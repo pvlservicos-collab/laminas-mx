@@ -100,9 +100,9 @@ const CATALOG: CatalogProduct[] = [
   {
     id: "neymar",
     section: "main",
-    name: "Estampita Neymar",
+    name: "Figurita Neymar",
     desc: "Camiseta de la selección — paquete en PDF para impresión",
-    renderImage: (bought) => <ProductImg src="/figurinhaney.jpg" alt="Estampita Neymar" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/figurinhaney.jpg" alt="Figurita Neymar" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT",
     checkBought: (d) =>
       d.items.some(i =>
@@ -135,7 +135,7 @@ const CATALOG: CatalogProduct[] = [
     id: "3x",
     section: "sorteio",
     name: "Paquete 3×",
-    desc: "Estampita en cuadrícula 3×3 para impresión — 9 unidades por hoja",
+    desc: "Figurita en cuadrícula 3×3 para impresión — 9 unidades por hoja",
     renderImage: (bought) => <ProductImg src="/3k.jpg" alt="Paquete 3x" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HP",
     boughtMessage: "¡Ya aumentaste tus chances!",
@@ -152,7 +152,7 @@ const CATALOG: CatalogProduct[] = [
     id: "10x",
     section: "sorteio",
     name: "Paquete 10×",
-    desc: "10 hojas con tu estampita — máximo para regalar",
+    desc: "10 hojas con tu figurita — máximo para regalar",
     renderImage: (bought) => <ProductImg src="/10x.jpg" alt="Paquete 10x" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HS",
     boughtMessage: "¡Ya aumentaste tus chances!",
@@ -197,7 +197,7 @@ function StickerCard({ pedido }: { pedido: Pedido }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={pedido.preview_url || pedido.sticker_url}
-          alt={pedido.nome || "estampita"}
+          alt={pedido.nome || "figurita"}
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
         <div style={{
@@ -206,7 +206,7 @@ function StickerCard({ pedido }: { pedido: Pedido }) {
         }} />
         <div style={{ position: "absolute", bottom: 12, left: 12, right: 12 }}>
           <p style={{ color: "#fff", fontSize: 13, fontWeight: 800, margin: 0, textShadow: "0 1px 4px rgba(0,0,0,.5)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            {pedido.nome || "Estampita"}
+            {pedido.nome || "Figurita"}
           </p>
           <p style={{ color: "rgba(255,255,255,.75)", fontSize: 11, margin: "2px 0 0" }}>{pedido.clube || "Copa 2026"}</p>
         </div>
@@ -220,12 +220,12 @@ function StickerCard({ pedido }: { pedido: Pedido }) {
       <div style={{ padding: "14px 14px 14px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <a
-            href={`/api/download?url=${encodeURIComponent(pedido.sticker_url)}&name=estampita-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
+            href={`/api/download?url=${encodeURIComponent(pedido.sticker_url)}&name=figurita-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
             style={{ display: "block", textAlign: "center", background: "#002395", color: "#fff", borderRadius: 10, padding: "10px 8px", fontSize: 12, fontWeight: 700, textDecoration: "none", letterSpacing: ".03em" }}
           >⬇ Descargar PNG</a>
           {pedido.pdf_url && (
             <a
-              href={`/api/download?url=${encodeURIComponent(pedido.pdf_url)}&name=estampita-pdf-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
+              href={`/api/download?url=${encodeURIComponent(pedido.pdf_url)}&name=figurita-pdf-${(pedido.nome || "copa").toLowerCase().replace(/\s+/g, "-")}`}
               style={{ display: "block", textAlign: "center", background: "#f8fafc", color: "#334155", borderRadius: 10, padding: "10px 8px", fontSize: 12, fontWeight: 700, textDecoration: "none", border: "1px solid #e2e8f0" }}
             >📄 PDF</a>
           )}
@@ -378,7 +378,7 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
       const url = URL.createObjectURL(pdfBlob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = layout === "a4" ? "poster-completo-a4.pdf" : "poster-estampita-4x4.pdf";
+      a.download = layout === "a4" ? "poster-completo-a4.pdf" : "poster-figurita-4x4.pdf";
       a.click();
       URL.revokeObjectURL(url);
     } catch {
@@ -509,7 +509,7 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
       border: bought ? "2px solid #002395" : "2px solid transparent",
     }}>
       <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", overflow: "hidden" }}>
-        <ProductImg src="/figurinhaney.jpg" alt="Estampita Neymar" bought={bought} />
+        <ProductImg src="/figurinhaney.jpg" alt="Figurita Neymar" bought={bought} />
         {!bought && (
           <div style={{
             position: "absolute", inset: 0, background: "rgba(15,15,15,.5)",
@@ -527,8 +527,8 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
         )}
       </div>
       <div style={{ padding: "16px 18px 18px" }}>
-        <p style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 800, color: "#0f172a", lineHeight: 1.25 }}>Estampita Neymar</p>
-        <p style={{ margin: "0 0 14px", fontSize: 12, color: "#64748b", lineHeight: 1.5 }}>Estampita exclusiva de Neymar para descargar en PNG o en PDF para impresión</p>
+        <p style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 800, color: "#0f172a", lineHeight: 1.25 }}>Figurita Neymar</p>
+        <p style={{ margin: "0 0 14px", fontSize: 12, color: "#64748b", lineHeight: 1.5 }}>Figurita exclusiva de Neymar para descargar en PNG o en PDF para impresión</p>
         {bought ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <a
@@ -543,7 +543,7 @@ function NeymarCard({ data, width = 250 }: { data: MemberData; width?: number })
             >⬇ Descargar PNG</a>
             <a
               href="/figurinha-neymar-impressão-grade-4x4.pdf"
-              download="estampita-neymar-grade-4x4.pdf"
+              download="figurita-neymar-grade-4x4.pdf"
               style={{
                 display: "block", textAlign: "center",
                 background: "#f8fafc", color: "#334155",
@@ -648,7 +648,7 @@ function MembrosContent() {
         }}>
           <span style={{ fontSize: 18 }}>⚽</span>
           <span className="membros-badge" style={{ color: "#002395", fontWeight: 800, fontSize: 13, letterSpacing: ".12em", textTransform: "uppercase" }}>
-            Estampita Copa 2026
+            Figurita Copa 2026
           </span>
         </div>
         <h1 className="membros-h1" style={{ color: "#002395", fontSize: 28, fontWeight: 900, margin: "0 0 8px", letterSpacing: ".06em", whiteSpace: "nowrap" }}>
@@ -746,7 +746,7 @@ function MembrosContent() {
 
             {/* Row 1 — Figurinhas personalizadas */}
             {data.pedidos.length > 0 && (
-              <ProductRow title={`Tus Estampitas (${data.pedidos.length})`}>
+              <ProductRow title={`Tus Figuritas (${data.pedidos.length})`}>
                 {data.pedidos.map(p => <StickerCard key={p.id} pedido={p} />)}
               </ProductRow>
             )}

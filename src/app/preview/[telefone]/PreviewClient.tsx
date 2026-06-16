@@ -103,7 +103,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
         <div className="w-full px-1 mb-5">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-sm font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              ¡Ya creaste tu estampita! 🔥
+              ¡Ya creaste tu figurita! 🔥
             </span>
             <span className="text-sm font-black text-copa-green" style={{ fontFamily: "var(--font-titulo)" }}>95%</span>
           </div>
@@ -138,7 +138,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
                     </p>
                     <p className="text-white text-[9px] font-bold tracking-widest whitespace-nowrap mt-1"
                       style={{ fontFamily: "var(--font-papernotes)", textShadow: "1px 1px 3px rgba(0,0,0,0.3)", opacity: 0.35 }}>
-                      mi-estampita-copa2026 &nbsp;&nbsp; mi-estampita-copa2026 &nbsp;&nbsp; mi-estampita-copa2026
+                      mi-figurita-copa2026 &nbsp;&nbsp; mi-figurita-copa2026 &nbsp;&nbsp; mi-figurita-copa2026
                     </p>
                   </div>
                 ))}
@@ -162,11 +162,11 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
         </h1>
 
         <p className="text-lg md:text-xl text-copa-blue text-center font-bold mb-2" style={{ fontFamily: "var(--font-papernotes)" }}>
-          ¡Tu estampita está lista! Realiza el pago para liberar la descarga...
+          ¡Tu figurita está lista! Realiza el pago para liberar la descarga...
         </p>
 
         <p className="text-base text-gray-600 text-center mb-6" style={{ fontFamily: "var(--font-papernotes)" }}>
-          Adquiere tu estampita HOY y participa por <strong>un boleto al Mundial</strong><br />Sorteo el 11/07/2026
+          Adquiere tu figurita HOY y participa por <strong>un boleto al Mundial</strong><br />Sorteo el 11/07/2026
         </p>
 
         <p
@@ -187,7 +187,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
           }}
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
-            LIBERAR MI ESTAMPITA
+            LIBERAR MI FIGURITA
           </span>
         </button>
 
@@ -197,7 +197,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
 
         <div className="w-full mt-6">
           <p className="text-xs text-center mb-2 font-bold tracking-widest uppercase" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,35,149,0.5)" }}>
-            Últimas estampitas generadas
+            Últimas figuritas generadas
           </p>
           <FigurinhasCarousel />
         </div>

@@ -21,20 +21,20 @@ async function fetchWithRetry(url: string, attempts = 3): Promise<Response> {
 
 const FAQ_ITEMS = [
   {
-    q: "¿Cuándo recibiré mi estampita?",
-    a: "Tu estampita se genera automáticamente aquí en esta página. Si no aparece, puedes buscarla ingresando tu número en el formulario de abajo.",
+    q: "¿Cuándo recibiré mi figurita?",
+    a: "Tu figurita se genera automáticamente aquí en esta página. Si no aparece, puedes buscarla ingresando tu número en el formulario de abajo.",
   },
   {
     q: "Compré más de 1 producto",
     a: "Usa el bloque '¿Compraste más de 1 producto?' abajo, ingresa tu número y accede al área de entregas con todos tus productos.",
   },
   {
-    q: "¿Cómo descargo mi estampita?",
-    a: "Haz clic en el botón '⬇ DESCARGAR MI ESTAMPITA' que aparece debajo de la imagen. El archivo se guardará en tu celular o computadora.",
+    q: "¿Cómo descargo mi figurita?",
+    a: "Haz clic en el botón '⬇ DESCARGAR MI FIGURITA' que aparece debajo de la imagen. El archivo se guardará en tu celular o computadora.",
   },
   {
     q: "¿Puedo usarla en cualquier álbum?",
-    a: "Tu estampita es una imagen digital (PNG) lista para compartir en WhatsApp, redes sociales o imprimir en casa.",
+    a: "Tu figurita es una imagen digital (PNG) lista para compartir en WhatsApp, redes sociales o imprimir en casa.",
   },
 ];
 
@@ -227,9 +227,9 @@ export default function Obrigado() {
     const a = document.createElement("a");
     if (stickerUrl.startsWith("data:")) {
       a.href = stickerUrl;
-      a.download = "mi-estampita-copa2026.png";
+      a.download = "mi-figurita-copa2026.png";
     } else {
-      a.href = `/api/download?url=${encodeURIComponent(stickerUrl)}&name=mi-estampita-copa2026`;
+      a.href = `/api/download?url=${encodeURIComponent(stickerUrl)}&name=mi-figurita-copa2026`;
     }
     a.click();
   };
@@ -359,7 +359,7 @@ export default function Obrigado() {
                       letterSpacing: ".06em", textTransform: "uppercase",
                     }}
                   >
-                    ⬇ DESCARGAR MI ESTAMPITA
+                    ⬇ DESCARGAR MI FIGURITA
                   </button>
                 </>
               ) : null}
@@ -373,7 +373,7 @@ export default function Obrigado() {
             </h2>
             <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 14px" }}>
               {stickerUrl
-                ? "Tu estampita aparece arriba. Usa el botón para descargar."
+                ? "Tu figurita aparece arriba. Usa el botón para descargar."
                 : "Ingresa tu número de WhatsApp para encontrarla (SIN +55)."}
             </p>
 
@@ -475,7 +475,7 @@ export default function Obrigado() {
             textDecoration: "underline", padding: "8px",
           }}
         >
-          Crear nueva estampita
+          Crear nueva figurita
         </a>
       </div>
 

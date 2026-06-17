@@ -166,7 +166,12 @@ export async function POST(req: NextRequest) {
   const nomeUpper = nomeSafe.toUpperCase();
   const clubeFormatted = clubeSafe.toUpperCase();
   const pesoSafe  = peso  ? sanitizeInput(peso,  10) : null;
-  const alturaSafe = altura ? sanitizeInput(altura, 10) : null;
+  const alturaRaw = altura ? parseFloat(sanitizeInput(altura, 10).replace(",", ".")) : null;
+  // Normaliza para metros: entrada > 3 é tratada como cm (120 → 1,20 m; 1.75 → 1,75 m)
+  const alturaM   = alturaRaw != null && !isNaN(alturaRaw)
+    ? (alturaRaw > 3 ? alturaRaw / 100 : alturaRaw).toFixed(2).replace(".", ",")
+    : null;
+  const alturaSafe = alturaM;
   const infoLine = [
     formatBirthDate(dataNascimento),
     alturaSafe ? `${alturaSafe} m` : null,
@@ -204,7 +209,7 @@ INSTRUCTIONS:
 [NAME]: ${nomeUpper}
 [INFO]: ${infoLine}
 [CLUB]: ${clubeFormatted}
-${pesoSafe || alturaSafe ? `Player stats for reference: ${[alturaSafe ? `height ${alturaSafe} cm` : null, pesoSafe ? `weight ${pesoSafe} kg` : null].filter(Boolean).join(", ")}.` : ""}
+${pesoSafe || alturaSafe ? `Player stats for reference: ${[alturaSafe ? `height ${alturaSafe} m` : null, pesoSafe ? `weight ${pesoSafe} kg` : null].filter(Boolean).join(", ")}.` : ""}
 
 The result must look like a real printed collectible sticker card. The portrait must be anatomically correct for the subject's real age and body type as shown in Image 1.`;
 

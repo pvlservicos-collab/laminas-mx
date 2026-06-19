@@ -12,12 +12,13 @@ const nextConfig: NextConfig = {
   async headers() {
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.utmify.com.br https://connect.facebook.net",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.utmify.com.br https://*.utmify.com.br https://connect.facebook.net",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob: https://flagcdn.com https://q2gdaftns1gmkspz.public.blob.vercel-storage.com https://o0npt1av31mwegdn.public.blob.vercel-storage.com https://*.giphy.com https://www.facebook.com",
-      "connect-src 'self' https://cdn.utmify.com.br https://*.utmify.com.br https://www.facebook.com https://www.google-analytics.com http://localhost:* ws://localhost:*",
-      "frame-src 'none'",
+      "img-src 'self' data: blob: https://flagcdn.com https://q2gdaftns1gmkspz.public.blob.vercel-storage.com https://o0npt1av31mwegdn.public.blob.vercel-storage.com https://*.giphy.com https://www.facebook.com https://*.utmify.com.br",
+      "connect-src 'self' https://cdn.utmify.com.br https://*.utmify.com.br https://api.ipify.org https://api6.ipify.org https://www.facebook.com https://www.google-analytics.com http://localhost:* ws://localhost:*",
+      "frame-src https://*.utmify.com.br",
+      "worker-src https://*.utmify.com.br",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",

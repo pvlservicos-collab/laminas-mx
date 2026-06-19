@@ -783,8 +783,8 @@ function MetricasTab() {
         return (
           <>
             <div style={{ display: "flex", gap: 16, marginBottom: 24 }}>
-              {ofertaCol("Oferta A — $63.99", "#CE1126", sa, taxaA)}
-              {ofertaCol("Oferta B — $63.99",  "#92400e", sb, taxaB)}
+              {ofertaCol("Oferta A — MX$63.99", "#CE1126", sa, taxaA)}
+              {ofertaCol("Oferta B — MX$63.99",  "#92400e", sb, taxaB)}
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
               <div style={chartBox}>

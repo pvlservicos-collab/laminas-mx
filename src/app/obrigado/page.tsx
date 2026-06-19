@@ -298,7 +298,7 @@ export default function Obrigado() {
               </p>
               <p style={{ margin: 0, fontSize: 16, fontWeight: 900, color: "#002395", lineHeight: 1.25 }}>
                 Genera tu segunda estampa por solo{" "}
-                <span style={{ color: "#009C3B" }}>$63.99</span>
+                <span style={{ color: "#009C3B" }}>MX$63.99</span>
               </p>
             </div>
             <a

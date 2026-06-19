@@ -183,7 +183,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             className="text-5xl md:text-6xl text-center mb-6 relative inline-block shine-effect"
             style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900, color: "#ffffff" }}
           >
-            {price || "$63.99"}
+            {price || "MX$63.99"}
           </p>
 
           {/* Botón */}

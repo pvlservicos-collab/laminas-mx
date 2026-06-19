@@ -45,7 +45,7 @@ const initialData: QuizData = {
 type AppStep = "hero" | "quiz-1" | "loading-photo" | "quiz-2" | "quiz-3" | "confirm" | "loading-generate" | "result";
 
 const SEGUNDA_CHECKOUT = "https://folem.mycartpanda.com/checkout";
-const SEGUNDA_PRICE = "$63.99";
+const SEGUNDA_PRICE = "MX$63.99";
 
 export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: string; price?: string }) {
   const isSegunda = typeof window !== "undefined" && !!new URLSearchParams(window.location.search).get("start");
@@ -124,7 +124,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
     const s = stepMap[appStep];
     if (!s) return;
     const { telefone, nome } = dataRef.current;
-    const oferta = isSegunda ? "segunda" : (price === "$63.99" ? "b" : "a");
+    const oferta = isSegunda ? "segunda" : (price === "MX$63.99" ? "b" : "a");
     track(s, { email: telefone || undefined, nome: nome || undefined, oferta });
   }, [appStep, stickerUrl, isSegunda, price]);
 

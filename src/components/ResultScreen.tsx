@@ -19,7 +19,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
     sessionStorage.removeItem("figurinha_sticker_url");
     sessionStorage.removeItem("figurinha_sticker_id");
     try { localStorage.setItem("figurinha_sticker_id", stickerId); } catch { /* ignore */ }
-    const checkoutUrl = checkoutUrlProp || process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2DW";
+    const checkoutUrl = checkoutUrlProp || process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://folem.mycartpanda.com/checkout";
 
     const params = new URLSearchParams(window.location.search);
     const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
@@ -183,7 +183,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             className="text-5xl md:text-6xl text-center mb-6 relative inline-block shine-effect"
             style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900, color: "#ffffff" }}
           >
-            {price || "$4.90 USD"}
+            {price || "$63.99"}
           </p>
 
           {/* Botón */}

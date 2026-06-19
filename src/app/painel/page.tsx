@@ -706,9 +706,15 @@ function MetricasTab() {
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, flexWrap: "wrap", gap: 12 }}>
         <div>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: "#004030", margin: "0 0 4px" }}>Métricas</h2>
-          <p style={{ color: "#64748b", fontSize: 13, margin: 0 }}>
+          <p style={{ color: "#64748b", fontSize: 13, margin: "0 0 6px" }}>
             {loading ? "Carregando..." : `Atualiza em ${countdown}s`}
           </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 7, padding: "5px 10px" }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "#15803d", textTransform: "uppercase", letterSpacing: ".04em" }}>🔗 Checkout:</span>
+            <a href="https://folem.mycartpanda.com/checkout" target="_blank" rel="noreferrer" style={{ fontSize: 12, color: "#166534", fontWeight: 600, textDecoration: "none", wordBreak: "break-all" }}>
+              https://folem.mycartpanda.com/checkout
+            </a>
+          </div>
         </div>
         <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
           {PERIODS.map(p => (
@@ -777,8 +783,8 @@ function MetricasTab() {
         return (
           <>
             <div style={{ display: "flex", gap: 16, marginBottom: 24 }}>
-              {ofertaCol("Oferta A — R$12,90", "#CE1126", sa, taxaA)}
-              {ofertaCol("Oferta B — R$9,90",  "#92400e", sb, taxaB)}
+              {ofertaCol("Oferta A — $63.99", "#CE1126", sa, taxaA)}
+              {ofertaCol("Oferta B — $63.99",  "#92400e", sb, taxaB)}
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
               <div style={chartBox}>

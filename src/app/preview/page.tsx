@@ -77,12 +77,12 @@ function PreviewContent() {
           className="text-5xl md:text-6xl text-copa-green text-center mb-6 shine-effect"
           style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}
         >
-          R$12,90
+          $63.99
         </p>
 
         <button
           onClick={() => {
-            const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://pay.onprofit.com.br/5Sh0FbF4?off=3wCdRS";
+            const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://folem.mycartpanda.com/checkout";
             const p = new URLSearchParams(window.location.search);
             const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck"];
             const utms: string[] = [];

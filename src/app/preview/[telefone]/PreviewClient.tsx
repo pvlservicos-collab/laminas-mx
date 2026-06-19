@@ -48,7 +48,7 @@ interface Props {
 
 export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
   const handleCheckout = () => {
-    const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2DW";
+    const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://folem.mycartpanda.com/checkout";
     const params = new URLSearchParams(window.location.search);
     const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
     const utms: string[] = [];
@@ -173,7 +173,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
           className="text-5xl md:text-6xl text-copa-green text-center mb-6 relative inline-block shine-effect"
           style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}
         >
-          $12,90
+          $63.99
         </p>
 
         <button

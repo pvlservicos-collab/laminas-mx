@@ -48,7 +48,7 @@ interface Props {
 
 export default function PreviewDescontoClient({ imageUrl, nome, stickerId }: Props) {
   const handleCheckout = () => {
-    const checkoutUrl = "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2GE";
+    const checkoutUrl = "https://folem.mycartpanda.com/checkout";
     const params = new URLSearchParams(window.location.search);
     const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
     const utms: string[] = [];
@@ -171,13 +171,13 @@ export default function PreviewDescontoClient({ imageUrl, nome, stickerId }: Pro
 
         {/* Preço com desconto */}
         <p className="text-lg text-gray-400 line-through text-center" style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}>
-          R$12,90
+          $63.99
         </p>
         <p
           className="text-5xl md:text-6xl text-copa-green text-center mb-6 relative inline-block shine-effect"
           style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}
         >
-          R$7,90
+          $63.99
         </p>
 
         <button

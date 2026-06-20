@@ -39,6 +39,8 @@ document.head.appendChild(a);
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://cdn.utmify.com.br" />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script type="text/javascript" src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/cpsales.js" />
       </head>
       <body className="min-h-full flex flex-col">
         {children}

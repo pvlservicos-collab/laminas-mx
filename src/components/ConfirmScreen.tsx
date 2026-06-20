@@ -18,7 +18,7 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
 
   const rows = [
     { label: "NOMBRE",    value: data.nome || "—" },
-    { label: "WHATSAPP",  value: data.telefone || "—" },
+    { label: "CORREO",    value: data.email || "—" },
     { label: "EQUIPO",    value: data.clube || "—" },
     { label: "FECHA",     value: formatDate(data.dataNascimento) },
     ...(data.peso   ? [{ label: "PESO",   value: `${data.peso} kg` }]   : []),

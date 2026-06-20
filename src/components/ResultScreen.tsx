@@ -10,9 +10,10 @@ interface ResultScreenProps {
   onCheckout?: () => void;
   checkoutUrl?: string;
   price?: string;
+  ctaText?: string;
 }
 
-export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckout, checkoutUrl: checkoutUrlProp, price }: ResultScreenProps) {
+export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckout, checkoutUrl: checkoutUrlProp, price, ctaText = "⚽ RECIBIR MI CROMO" }: ResultScreenProps) {
   const handleCheckout = () => {
     onCheckout?.();
     track("checkout");
@@ -198,7 +199,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             }}
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              ⚽ RECIBIR MI CROMO
+              {ctaText}
             </span>
           </button>
 

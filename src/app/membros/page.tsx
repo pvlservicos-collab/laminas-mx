@@ -602,7 +602,7 @@ function ProductRow({ title, accent, children }: { title: string; accent?: boole
 
 function MembrosContent() {
   const searchParams = useSearchParams();
-  const foneParam = searchParams.get("fone") || "";
+  const emailParam = searchParams.get("email") || searchParams.get("fone") || "";
 
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
@@ -610,12 +610,14 @@ function MembrosContent() {
   const [data, setData] = useState<MemberData | null>(null);
 
   const fetchMember = async (fone: string) => {
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fone.trim());
     const digits = fone.replace(/\D/g, "");
-    if (digits.length < 10) { setError("Ingresa un número de WhatsApp válido con código de área."); return; }
+    if (!isEmail && digits.length < 8) { setError("Ingresa un correo electrónico válido."); return; }
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/membros?fone=${digits}`);
+      const param = isEmail ? `email=${encodeURIComponent(fone.trim().toLowerCase())}` : `fone=${digits}`;
+      const res = await fetch(`/api/membros?${param}`);
       if (res.status === 404) { setError("No se encontró ninguna compra para ese número. Verifica si lo ingresaste correctamente."); setData(null); return; }
       if (!res.ok) throw new Error();
       setData(await res.json());
@@ -627,9 +629,9 @@ function MembrosContent() {
   };
 
   useEffect(() => {
-    if (foneParam) { setPhone(foneParam); fetchMember(foneParam); }
+    if (emailParam) { setPhone(emailParam); fetchMember(emailParam); }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foneParam]);
+  }, [emailParam]);
 
   return (
     <main style={{

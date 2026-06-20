@@ -4,9 +4,10 @@ import Image from "next/image";
 
 interface HeroProps {
   onStart: () => void;
+  ctaText?: string;
 }
 
-export default function Hero({ onStart }: HeroProps) {
+export default function Hero({ onStart, ctaText = "¡EMPEZAR!" }: HeroProps) {
   return (
     <section className="flex flex-col items-center min-h-[100dvh] w-full px-5 pt-8 pb-4 text-center overflow-x-hidden justify-center gap-3 md:gap-2 md:py-6" style={{ background: "#006847" }}>
       <h1
@@ -104,7 +105,7 @@ export default function Hero({ onStart }: HeroProps) {
           color: "#FFFFFF",
         }}
       >
-        ¡EMPEZAR!
+        {ctaText}
       </button>
 
       <div className="mt-2 flex flex-col items-center gap-2">

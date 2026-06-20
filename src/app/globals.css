@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Oculta elementos visuais do script Cartpanda sem quebrar o tracking */
+[class^="cpd-"], [class*=" cpd-"], [id^="cpd-"], [id^="cartpanda-"] {
+  display: none !important;
+}
+
 @font-face {
   font-family: 'Papernotes';
   src: url('/fonts/papernotes/Papernotes.woff2') format('woff2'),

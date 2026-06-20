@@ -155,13 +155,13 @@ export default function Obrigado() {
   const [stickerUrl, setStickerUrl]     = useState<string | null>(null);
   const [stickerLoading, setStickerLoading] = useState(true);
 
-  // — Buscar figurinha por telefone —
-  const [searchPhone, setSearchPhone]   = useState("");
+  // — Buscar figurinha por email —
+  const [searchEmail, setSearchEmail]   = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchError, setSearchError]   = useState<string | null>(null);
 
   // — Área de membros —
-  const [memberPhone, setMemberPhone]   = useState("");
+  const [memberEmail, setMemberEmail]   = useState("");
   const [memberLoading, setMemberLoading] = useState(false);
   const [memberError, setMemberError]   = useState<string | null>(null);
 
@@ -206,15 +206,15 @@ export default function Obrigado() {
   }, []);
 
   const handleBuscarFigurinha = async () => {
-    const digits = searchPhone.replace(/\D/g, "");
-    if (digits.length < 10) { setSearchError("Ingresa un teléfono válido con código de área."); return; }
+    const email = searchEmail.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setSearchError("Ingresa un correo electrónico válido."); return; }
     setSearchLoading(true);
     setSearchError(null);
     try {
-      const res = await fetch(`/api/sticker?email=${encodeURIComponent(digits)}`);
+      const res = await fetch(`/api/sticker?email=${encodeURIComponent(email)}`);
       const data = await res.json();
       if (data.url) { setStickerUrl(data.url); setSearchError(null); }
-      else setSearchError("Estampita no encontrada. Verifica el número e intenta de nuevo.");
+      else setSearchError("Estampita no encontrada. Verifica el correo e intenta de nuevo.");
     } catch {
       setSearchError("Error al buscar. Intenta de nuevo.");
     } finally {
@@ -235,15 +235,15 @@ export default function Obrigado() {
   };
 
   const handleMemberLogin = async () => {
-    const digits = memberPhone.replace(/\D/g, "");
-    if (digits.length < 10) { setMemberError("Ingresa un teléfono válido con código de área."); return; }
+    const email = memberEmail.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setMemberError("Ingresa un correo electrónico válido."); return; }
     setMemberLoading(true);
     setMemberError(null);
     try {
-      const res = await fetch(`/api/membros?fone=${digits}`);
-      if (res.status === 404) { setMemberError("No se encontró ninguna compra para ese número."); return; }
+      const res = await fetch(`/api/membros?email=${encodeURIComponent(email)}`);
+      if (res.status === 404) { setMemberError("No se encontró ninguna compra para ese correo."); return; }
       if (!res.ok) throw new Error();
-      router.push(`/membros?fone=${digits}`);
+      router.push(`/membros?email=${encodeURIComponent(email)}`);
     } catch {
       setMemberError("Error al verificar. Intenta de nuevo.");
     } finally {
@@ -369,25 +369,25 @@ export default function Obrigado() {
           {/* Não recebeu */}
           <div style={{ padding: "24px 28px" }}>
             <h2 style={{ fontSize: 17, fontWeight: 800, color: "#002395", margin: "0 0 6px", display: "flex", alignItems: "center", gap: 8 }}>
-              📱 ¿No recibiste tu estampa?
+              📧 ¿No recibiste tu estampa?
             </h2>
             <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 14px" }}>
               {stickerUrl
                 ? "Tu figurita aparece arriba. Usa el botón para descargar."
-                : "Ingresa tu número de WhatsApp para encontrarla (SIN +55)."}
+                : "Ingresa tu correo electrónico para encontrarla."}
             </p>
 
             {!stickerUrl && (
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 <input
-                  type="tel"
-                  inputMode="numeric"
-                  placeholder="Ejemplo: 11998765432"
-                  value={searchPhone}
-                  maxLength={15}
+                  type="email"
+                  inputMode="email"
+                  placeholder="tucorreo@ejemplo.com"
+                  value={searchEmail}
+                  maxLength={255}
                   disabled={searchLoading}
-                  aria-label="Número de WhatsApp para buscar figurinha"
-                  onChange={e => setSearchPhone(e.target.value.replace(/\D/g, ""))}
+                  aria-label="Correo electrónico para buscar figurinha"
+                  onChange={e => setSearchEmail(e.target.value)}
                   onKeyDown={e => e.key === "Enter" && handleBuscarFigurinha()}
                   style={{
                     flex: "1 1 180px", border: "2px solid #e2e8f0", borderRadius: 10,
@@ -425,19 +425,19 @@ export default function Obrigado() {
             🏆 ¿Compraste más de 1 producto?
           </h2>
           <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 16px" }}>
-            Inicia sesión en nuestra área de entregas con tu número para acceder a todos tus productos.
+            Inicia sesión en nuestra área de entregas con tu correo para acceder a todos tus productos.
           </p>
 
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <input
-              type="tel"
-              inputMode="numeric"
-              placeholder="Ejemplo: 11998765432"
-              value={memberPhone}
-              maxLength={15}
+              type="email"
+              inputMode="email"
+              placeholder="tucorreo@ejemplo.com"
+              value={memberEmail}
+              maxLength={255}
               disabled={memberLoading}
-              aria-label="Número de WhatsApp para acessar área de membros"
-              onChange={e => setMemberPhone(e.target.value.replace(/\D/g, ""))}
+              aria-label="Correo electrónico para acceder al área de membros"
+              onChange={e => setMemberEmail(e.target.value)}
               onKeyDown={e => e.key === "Enter" && handleMemberLogin()}
               style={{
                 flex: "1 1 180px", border: "2px solid #e2e8f0", borderRadius: 10,

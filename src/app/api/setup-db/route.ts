@@ -95,6 +95,14 @@ export async function GET(req: NextRequest) {
       )
     `;
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS site_config (
+        id int PRIMARY KEY DEFAULT 1,
+        data jsonb NOT NULL DEFAULT '{}'::jsonb,
+        updated_at timestamptz NOT NULL DEFAULT now()
+      )
+    `;
+
     // Índices pra performance em escala
     await sql`CREATE INDEX IF NOT EXISTS idx_pedidos_email ON pedidos(email)`;
     await sql`CREATE INDEX IF NOT EXISTS idx_pedidos_sticker_id ON pedidos(sticker_id)`;

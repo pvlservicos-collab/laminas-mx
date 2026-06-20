@@ -5,24 +5,12 @@ import { useState, useRef, useEffect } from "react";
 export interface QuizData {
   nome: string;
   dataNascimento: string;
-  telefone: string;
+  email: string;
   clube: string;
   jogadorFavorito: string;
   peso: string;
   altura: string;
   foto: File | null;
-}
-
-function formatPhone(input: string): string {
-  let digits = input.replace(/\D/g, "");
-  if (digits.startsWith("0052")) digits = digits.slice(4);
-  else if (digits.startsWith("52") && digits.length > 10) digits = digits.slice(2);
-  digits = digits.slice(0, 10);
-  const n = digits.length;
-  if (n === 0) return "";
-  if (n <= 2) return `(${digits}`;
-  if (n <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
-  return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
 }
 
 interface QuizStepProps {
@@ -51,6 +39,8 @@ const clubes = [
   "Real Madrid", "Barcelona", "Manchester City", "PSG",
   "Bayern Munich", "Juventus", "Liverpool", "Chelsea",
 ];
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function QuizStep({ step, data, updateData, onNext, onBack, totalSteps }: QuizStepProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -96,8 +86,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
           const age = now.getFullYear() - birth.getFullYear();
           if (age < 0 || age > 120) newErrors.dataNascimento = "Fecha inválida";
         }
-        { const digits = data.telefone.replace(/\D/g, "");
-          if (digits.length < 10) newErrors.telefone = "Ingresa un teléfono válido con clave de área"; }
+        if (!EMAIL_REGEX.test(data.email)) newErrors.email = "Ingresa un correo electrónico válido";
         break;
       case 3:
         if (!data.clube || data.clube.trim().length < 2) newErrors.clube = "Escribe o selecciona un equipo";
@@ -202,7 +191,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
           </div>
         )}
 
-        {/* Step 2: Fecha + Teléfono */}
+        {/* Step 2: Fecha + Email */}
         {step === 2 && (
           <div className="flex flex-col gap-5">
             <div className="text-center">
@@ -275,23 +264,25 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             </div>
             {errors.dataNascimento && <p className="text-red-500 text-sm mt-1">{errors.dataNascimento}</p>}
 
-            {/* Teléfono */}
+            {/* Email */}
             <div>
               <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>
-                TU WHATSAPP
+                TU CORREO ELECTRÓNICO
               </label>
               <input
-                type="tel"
-                value={data.telefone}
-                onChange={(e) => updateData({ telefone: formatPhone(e.target.value) })}
-                placeholder="(55) 1234-5678"
-                maxLength={16}
-                autoComplete="tel"
-                inputMode="numeric"
+                type="email"
+                value={data.email}
+                onChange={(e) => updateData({ email: e.target.value.trim() })}
+                placeholder="tucorreo@ejemplo.com"
+                maxLength={255}
+                autoComplete="email"
+                inputMode="email"
                 className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none transition-colors placeholder:text-gray-400 bg-white"
                 style={{ fontFamily: "var(--font-papernotes)", color: "#111" }}
+                onFocus={e => e.target.style.borderColor = "#006847"}
+                onBlur={e => e.target.style.borderColor = "#e5e7eb"}
               />
-              {errors.telefone && <p className="text-red-500 text-sm mt-1">{errors.telefone}</p>}
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
           </div>
         )}

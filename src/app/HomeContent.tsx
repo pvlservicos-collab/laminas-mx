@@ -34,7 +34,7 @@ function compressToBase64(file: File, maxSize = 512, quality = 0.7): Promise<str
 const initialData: QuizData = {
   nome: "",
   dataNascimento: "",
-  telefone: "",
+  email: "",
   clube: "",
   jogadorFavorito: "",
   peso: "",
@@ -44,10 +44,20 @@ const initialData: QuizData = {
 
 type AppStep = "hero" | "quiz-1" | "loading-photo" | "quiz-2" | "quiz-3" | "confirm" | "loading-generate" | "result";
 
-const SEGUNDA_CHECKOUT = "https://folem.mycartpanda.com/checkout/211069931:1";
+const SEGUNDA_CHECKOUT = "https://folem.mycartpanda.com/checkout";
 const SEGUNDA_PRICE = "MX$63.99";
 
-export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: string; price?: string }) {
+export default function HomeContent({
+  checkoutUrl,
+  price,
+  firstButtonText,
+  purchaseButtonText,
+}: {
+  checkoutUrl?: string;
+  price?: string;
+  firstButtonText?: string;
+  purchaseButtonText?: string;
+}) {
   const isSegunda = typeof window !== "undefined" && !!new URLSearchParams(window.location.search).get("start");
   const resolvedCheckoutUrl = checkoutUrl ?? (isSegunda ? SEGUNDA_CHECKOUT : undefined);
   const resolvedPrice = price ?? (isSegunda ? SEGUNDA_PRICE : undefined);
@@ -89,13 +99,13 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
   }, []);
 
   useEffect(() => {
-    const pendingTel = sessionStorage.getItem("_pending_tel");
-    if (pendingTel) {
-      sessionStorage.removeItem("_pending_tel");
+    const pendingEmail = sessionStorage.getItem("_pending_email");
+    if (pendingEmail) {
+      sessionStorage.removeItem("_pending_email");
       fetch("/api/abandono/figurinha", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ telefone: pendingTel, _cancel: true }),
+        body: JSON.stringify({ email: pendingEmail, _cancel: true }),
       }).catch(() => {});
     }
   }, []);
@@ -123,17 +133,17 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
     };
     const s = stepMap[appStep];
     if (!s) return;
-    const { telefone, nome } = dataRef.current;
+    const { email, nome } = dataRef.current;
     const oferta = isSegunda ? "segunda" : (price === "MX$63.99" ? "b" : "a");
-    track(s, { email: telefone || undefined, nome: nome || undefined, oferta });
+    track(s, { email: email || undefined, nome: nome || undefined, oferta });
   }, [appStep, stickerUrl, isSegunda, price]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (appStep !== "loading-generate") return;
       e.preventDefault();
-      const { telefone, nome } = dataRef.current;
-      track("saiu_gerando", { email: telefone || undefined, nome: nome || undefined });
+      const { email, nome } = dataRef.current;
+      track("saiu_gerando", { email: email || undefined, nome: nome || undefined });
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
@@ -148,23 +158,23 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
     const sendBeaconNow = () => {
       if (beaconSent) return;
       beaconSent = true;
-      const { telefone } = dataRef.current;
-      if (!telefone) return;
+      const { email } = dataRef.current;
+      if (!email) return;
       navigator.sendBeacon(
         "/api/abandono/figurinha",
-        new Blob([JSON.stringify({ telefone })], { type: "application/json" })
+        new Blob([JSON.stringify({ email })], { type: "application/json" })
       );
     };
 
     const sendAfterDelay = () => {
       if (beaconSent) return;
       beaconSent = true;
-      const { telefone } = dataRef.current;
-      if (!telefone) return;
+      const { email } = dataRef.current;
+      if (!email) return;
       fetch("/api/abandono/figurinha", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ telefone }),
+        body: JSON.stringify({ email }),
       }).catch(() => {});
     };
 
@@ -175,12 +185,12 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
         if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
         if (beaconSent) {
           beaconSent = false;
-          const { telefone } = dataRef.current;
-          if (telefone) {
+          const { email } = dataRef.current;
+          if (email) {
             fetch("/api/abandono/figurinha", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ telefone, _cancel: true }),
+              body: JSON.stringify({ email, _cancel: true }),
             }).catch(() => {});
           }
         }
@@ -207,10 +217,10 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
     const sendAbandono = (useBeacon: boolean) => {
       if (sent) return;
       sent = true;
-      const { telefone } = dataRef.current;
+      const { email } = dataRef.current;
       const sid = stickerId || sessionStorage.getItem("figurinha_sticker_id") || "";
-      if (!telefone) return;
-      const payload = JSON.stringify({ telefone, stickerId: sid });
+      if (!email) return;
+      const payload = JSON.stringify({ email, stickerId: sid });
       if (useBeacon) {
         navigator.sendBeacon("/api/abandono/figurinha", new Blob([payload], { type: "application/json" }));
       } else {
@@ -221,9 +231,9 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
     const cancelAbandono = () => {
       if (!sent) return;
       sent = false;
-      const { telefone } = dataRef.current;
-      if (!telefone) return;
-      fetch("/api/abandono/figurinha", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ telefone, _cancel: true }) }).catch(() => {});
+      const { email } = dataRef.current;
+      if (!email) return;
+      fetch("/api/abandono/figurinha", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, _cancel: true }) }).catch(() => {});
     };
 
     const onVisibility = () => {
@@ -295,7 +305,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
         body: JSON.stringify({
           nome: current.nome,
           dataNascimento: current.dataNascimento,
-          telefone: current.telefone,
+          email: current.email,
           clube: current.clube,
           jogadorFavorito: current.jogadorFavorito,
           peso: current.peso || undefined,
@@ -315,7 +325,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
         setErrorTimestamp(null);
         sessionStorage.setItem("figurinha_sticker_url", dataUrl);
         sessionStorage.setItem("figurinha_sticker_id", result.stickerId || "");
-        try { sessionStorage.removeItem("_pending_tel"); } catch { /* ignore */ }
+        try { sessionStorage.removeItem("_pending_email"); } catch { /* ignore */ }
         try { localStorage.setItem("figurinha_sticker_id", result.stickerId || ""); } catch { /* ignore */ }
         setAppStep("result");
         return;
@@ -368,6 +378,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
             setQuizStep(1);
             setAppStep("quiz-1");
           }}
+          ctaText={firstButtonText}
         />
       )}
 
@@ -394,7 +405,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
           data={data}
           fotoPreviewUrl={fotoPreviewUrl}
           onConfirm={() => {
-            try { sessionStorage.setItem("_pending_tel", data.telefone.replace(/\D/g, "").slice(0, 20)); } catch { /* ignore */ }
+            try { sessionStorage.setItem("_pending_email", (data.email || "").slice(0, 255)); } catch { /* ignore */ }
             setGenStartTime(Date.now());
             setAppStep("loading-generate");
             generateFigurinha();
@@ -421,6 +432,7 @@ export default function HomeContent({ checkoutUrl, price }: { checkoutUrl?: stri
           stickerId={stickerId}
           checkoutUrl={resolvedCheckoutUrl}
           price={resolvedPrice}
+          ctaText={purchaseButtonText}
           onRetry={() => {
             if (stickerId === "demo") {
               setStickerUrl("");

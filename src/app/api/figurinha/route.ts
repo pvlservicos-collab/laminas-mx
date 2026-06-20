@@ -95,14 +95,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Muitas requisições. Aguarde 1 minuto." }, { status: 429 });
   }
 
-  let body: { nome: string; dataNascimento: string; telefone?: string; clube: string; jogadorFavorito: string; peso?: string; altura?: string; fotoBase64: string; errorTimestamp?: string; retryAttempt?: number; };
+  let body: { nome: string; dataNascimento: string; email?: string; clube: string; jogadorFavorito: string; peso?: string; altura?: string; fotoBase64: string; errorTimestamp?: string; retryAttempt?: number; };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Dados inválidos" }, { status: 400 });
   }
 
-  const { nome, dataNascimento, telefone, clube, jogadorFavorito, peso, altura, fotoBase64, errorTimestamp, retryAttempt } = body;
+  const { nome, dataNascimento, email, clube, jogadorFavorito, peso, altura, fotoBase64, errorTimestamp, retryAttempt } = body;
   if (!nome || !dataNascimento || !clube || !fotoBase64) {
     console.error("Dados incompletos:", { nome: !!nome, dataNascimento: !!dataNascimento, clube: !!clube, fotoBase64: !!fotoBase64 });
     return NextResponse.json({ error: "Dados incompletos" }, { status: 400 });
@@ -140,13 +140,13 @@ export async function POST(req: NextRequest) {
 
   const t0 = Date.now();
   const sql = getDb();
-  const telefoneSafe = telefone ? telefone.replace(/\D/g, "").slice(0, 20) : null;
+  const emailSafe = email ? email.trim().toLowerCase().slice(0, 255) : null;
 
   // Tudo que pode rodar antes da API roda em paralelo
-  const rascunhoPromise = telefoneSafe
+  const rascunhoPromise = emailSafe
     ? sql<{ id: number }[]>`
-        INSERT INTO pedidos (nome, data_nascimento, clube, jogador_favorito, telefone, status)
-        VALUES (${nomeSafe}, ${dataNascimento}, ${clubeSafe}, ${jogadorSafe}, ${telefoneSafe}, 'gerando')
+        INSERT INTO pedidos (nome, data_nascimento, clube, jogador_favorito, email, status)
+        VALUES (${nomeSafe}, ${dataNascimento}, ${clubeSafe}, ${jogadorSafe}, ${emailSafe}, 'gerando')
         RETURNING id
       `.catch(() => null)
     : Promise.resolve(null);
@@ -316,8 +316,8 @@ The result must look like a real printed collectible sticker card. The portrait 
           WHERE id = ${rascunhoId}`
         .catch(e => console.error("DB update rascunho erro:", e));
     } else {
-      await sql`INSERT INTO pedidos (nome, data_nascimento, clube, jogador_favorito, telefone, sticker_id, sticker_url, preview_url, status, api_key_used, generation_ms)
-          VALUES (${nomeSafe}, ${dataNascimento}, ${clubeSafe}, ${jogadorSafe}, ${telefoneSafe}, ${stickerId}, ${blob.url}, ${finalPreviewUrl}, 'pendente', ${successKeyIdx + 1}, ${generationMs})`
+      await sql`INSERT INTO pedidos (nome, data_nascimento, clube, jogador_favorito, email, sticker_id, sticker_url, preview_url, status, api_key_used, generation_ms)
+          VALUES (${nomeSafe}, ${dataNascimento}, ${clubeSafe}, ${jogadorSafe}, ${emailSafe}, ${stickerId}, ${blob.url}, ${finalPreviewUrl}, 'pendente', ${successKeyIdx + 1}, ${generationMs})`
         .catch(e => console.error("DB insert erro:", e));
     }
 

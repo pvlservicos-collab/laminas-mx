@@ -12,8 +12,8 @@ export interface SiteConfig {
 export const DEFAULT_CONFIG: SiteConfig = {
   locale: "es-MX",
   currency: "MXN",
-  price: "MX$63.99",
-  checkoutUrl: "https://folem.mycartpanda.com/checkout",
+  price: "MX$59.99",
+  checkoutUrl: "https://folem.mycartpanda.com/checkout/211069931:1",
   firstButtonText: "¡EMPEZAR!",
   purchaseButtonText: "⚽ RECIBIR MI CROMO",
 };

@@ -7,6 +7,10 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  if (!process.env.DATABASE_URL) {
+    return NextResponse.json({ error: "DATABASE_URL não configurada", pedidos: [], totalFiltered: 0, stats: {}, hasMore: false }, { status: 503 });
+  }
+
   const sql = getDb();
   const { searchParams } = new URL(req.url);
   const offset = Number(searchParams.get("offset") || "0");
@@ -20,6 +24,7 @@ export async function GET(req: NextRequest) {
   let pedidos;
   let totalFiltered;
 
+  try {
   if (all) {
     const nomeFilter = nome.trim() ? sql`AND p.nome ILIKE ${`%${nome.trim()}%`}` : sql``;
     const foneFilter = fone.trim() ? sql`AND p.telefone ILIKE ${`%${fone.trim()}%`}` : sql``;
@@ -99,6 +104,11 @@ export async function GET(req: NextRequest) {
     limit,
     hasMore: offset + pedidos.length < totalFiltered,
   });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("admin/pedidos DB error:", msg);
+    return NextResponse.json({ error: "Erro ao consultar banco de dados", detail: msg, pedidos: [], totalFiltered: 0, stats: {}, hasMore: false }, { status: 503 });
+  }
 }
 
 export async function DELETE(req: NextRequest) {

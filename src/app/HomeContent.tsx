@@ -44,8 +44,8 @@ const initialData: QuizData = {
 
 type AppStep = "hero" | "quiz-1" | "loading-photo" | "quiz-2" | "quiz-3" | "confirm" | "loading-generate" | "result";
 
-const SEGUNDA_CHECKOUT = "https://folem.mycartpanda.com/checkout";
-const SEGUNDA_PRICE = "MX$63.99";
+const SEGUNDA_CHECKOUT = "https://folem.mycartpanda.com/checkout/211069931:1";
+const SEGUNDA_PRICE = "MX$59.99";
 
 export default function HomeContent({
   checkoutUrl,

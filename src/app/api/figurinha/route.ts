@@ -312,12 +312,12 @@ The result must look like a real printed collectible sticker card. The portrait 
     if (rascunhoId) {
       await sql`UPDATE pedidos SET
             sticker_id = ${stickerId}, sticker_url = ${blob.url}, preview_url = ${finalPreviewUrl},
-            status = 'pendente', api_key_used = ${successKeyIdx + 1}, generation_ms = ${generationMs}
+            status = 'pendente'
           WHERE id = ${rascunhoId}`
         .catch(e => console.error("DB update rascunho erro:", e));
     } else {
-      await sql`INSERT INTO pedidos (nome, data_nascimento, clube, jogador_favorito, email, sticker_id, sticker_url, preview_url, status, api_key_used, generation_ms)
-          VALUES (${nomeSafe}, ${dataNascimento}, ${clubeSafe}, ${jogadorSafe}, ${emailSafe}, ${stickerId}, ${blob.url}, ${finalPreviewUrl}, 'pendente', ${successKeyIdx + 1}, ${generationMs})`
+      await sql`INSERT INTO pedidos (nome, data_nascimento, clube, jogador_favorito, email, sticker_id, sticker_url, preview_url, status)
+          VALUES (${nomeSafe}, ${dataNascimento}, ${clubeSafe}, ${jogadorSafe}, ${emailSafe}, ${stickerId}, ${blob.url}, ${finalPreviewUrl}, 'pendente')`
         .catch(e => console.error("DB insert erro:", e));
     }
 

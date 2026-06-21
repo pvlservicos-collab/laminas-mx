@@ -267,7 +267,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             {/* Email */}
             <div>
               <label className="block text-lg font-bold mb-1" style={{ fontFamily: "var(--font-titulo)", color: "#111" }}>
-                TU CORREO ELECTRÓNICO
+                TU CORREO ELECTRÓNICO (se utilizará para recibir tu figurita)
               </label>
               <input
                 type="email"

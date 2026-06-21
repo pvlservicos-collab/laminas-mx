@@ -96,7 +96,7 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
 
         {longWait && (
           <p className="text-sm font-bold text-center -mt-4" style={{ fontFamily: "var(--font-papernotes)", color: "#006847" }}>
-            No salgas de esta pantalla, puede tardar hasta 2 minutos.
+            No salgas de esta pantalla, puede tardar hasta 2 minutos, ya que estamos generando tu figurita en alta calidad
           </p>
         )}
 

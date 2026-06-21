@@ -208,28 +208,6 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
           </p>
         </div>
 
-        {/* Depoimentos */}
-        <div className="depoimentos-wrap mt-6 flex flex-col gap-2 px-4">
-          <p className="text-xs text-center font-bold tracking-widest uppercase text-white opacity-60" style={{ fontFamily: "var(--font-papernotes)" }}>
-            Lo que están diciendo
-          </p>
-          <div className="depoimentos-grid">
-            {["/dd1.png", "/dd2.png", "/dd3.png"].map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={src} alt={`Testimonio ${i + 1}`} className="rounded-lg shadow-md w-full" draggable={false} />
-            ))}
-          </div>
-        </div>
-
-        <style>{`
-          .depoimentos-wrap { width: min(360px, 90vw); }
-          .depoimentos-grid { display: flex; flex-direction: column-reverse; gap: 10px; }
-          @media (min-width: 641px) {
-            .depoimentos-wrap { width: min(680px, 90vw); }
-            .depoimentos-grid { flex-direction: row; gap: 12px; }
-            .depoimentos-grid img { flex: 1; min-width: 0; }
-          }
-        `}</style>
         </>
       )}
     </section>

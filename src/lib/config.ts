@@ -13,7 +13,7 @@ export const DEFAULT_CONFIG: SiteConfig = {
   locale: "es-MX",
   currency: "MXN",
   price: "MX$59.99",
-  checkoutUrl: "https://folem.mycartpanda.com/checkout/211069931:1",
+  checkoutUrl: "https://buy.stripe.com/8x2eVdgWfcOB0FD7Qj5Vu02",
   firstButtonText: "¡EMPEZAR!",
   purchaseButtonText: "⚽ RECIBIR MI CROMO",
 };

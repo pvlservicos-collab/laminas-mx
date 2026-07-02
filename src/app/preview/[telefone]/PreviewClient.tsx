@@ -47,26 +47,6 @@ interface Props {
 }
 
 export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
-  const handleCheckout = () => {
-    const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/8x2eVdgWfcOB0FD7Qj5Vu02";
-    const params = new URLSearchParams(window.location.search);
-    const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
-    const utms: string[] = [];
-    for (const key of utmKeys) {
-      let val = params.get(key);
-      if (!val) {
-        const cookie = document.cookie.split(";").find(c => c.trim().startsWith(`${key}=`));
-        if (cookie) val = cookie.split("=")[1];
-      }
-      if (!val) {
-        try { val = localStorage.getItem(key); } catch { /* ignore */ }
-      }
-      if (val && key !== "src") utms.push(`${key}=${encodeURIComponent(val)}`);
-    }
-    const separator = checkoutUrl.includes("?") ? "&" : "?";
-    const utmString = utms.length > 0 ? `&${utms.join("&")}` : "";
-    window.location.href = `${checkoutUrl}${separator}src=${stickerId}${utmString}`;
-  };
 
   useEffect(() => {
     const preventContext = (e: MouseEvent) => e.preventDefault();
@@ -176,20 +156,22 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
           MX$63.99
         </p>
 
-        <button
-          onClick={handleCheckout}
+        <a
+          href={process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/8x2eVdgWfcOB0FD7Qj5Vu02"}
+          onClick={(e) => { e.currentTarget.href = e.currentTarget.href + window.location.search; }}
           className="w-full text-white font-bold text-xl md:text-2xl py-5 rounded-2xl
-            active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.15em] relative overflow-hidden"
+            active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.15em] relative overflow-hidden block text-center"
           style={{
             fontFamily: "var(--font-titulo)",
             background: "linear-gradient(135deg, #002395 0%, #0040CC 50%, #002395 100%)",
             boxShadow: "0 6px 24px rgba(0,35,149,0.45), inset 0 1px 0 rgba(255,255,255,0.15)",
+            textDecoration: "none",
           }}
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
             LIBERAR MI FIGURITA
           </span>
-        </button>
+        </a>
 
         <p className="text-xs text-center mt-3 tracking-widest uppercase" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,35,149,0.5)" }}>
           Foto o información pueden ajustarse después del pago

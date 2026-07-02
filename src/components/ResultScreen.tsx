@@ -14,34 +14,7 @@ interface ResultScreenProps {
 }
 
 export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckout, checkoutUrl: checkoutUrlProp, price, ctaText = "RECIBIR MI CROMO" }: ResultScreenProps) {
-  const handleCheckout = () => {
-    onCheckout?.();
-    track("checkout");
-    sessionStorage.removeItem("figurinha_sticker_url");
-    sessionStorage.removeItem("figurinha_sticker_id");
-    try { localStorage.setItem("figurinha_sticker_id", stickerId); } catch { /* ignore */ }
-    const checkoutUrl = checkoutUrlProp || process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/8x2eVdgWfcOB0FD7Qj5Vu02";
-
-    const params = new URLSearchParams(window.location.search);
-    const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
-    const utms: string[] = [];
-
-    for (const key of utmKeys) {
-      let val = params.get(key);
-      if (!val) {
-        const cookie = document.cookie.split(";").find(c => c.trim().startsWith(`${key}=`));
-        if (cookie) val = cookie.split("=")[1];
-      }
-      if (!val) {
-        try { val = localStorage.getItem(key); } catch { /* ignore */ }
-      }
-      if (val && key !== "src") utms.push(`${key}=${encodeURIComponent(val)}`);
-    }
-
-    const separator = checkoutUrl.includes("?") ? "&" : "?";
-    const utmString = utms.length > 0 ? `&${utms.join("&")}` : "";
-    window.location.href = `${checkoutUrl}${separator}src=${stickerId}${utmString}`;
-  };
+  const checkoutUrl = checkoutUrlProp || process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/8x2eVdgWfcOB0FD7Qj5Vu02";
 
   useEffect(() => {
     const preventContext = (e: MouseEvent) => e.preventDefault();
@@ -188,20 +161,29 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
           </p>
 
           {/* Botón */}
-          <button
-            onClick={handleCheckout}
+          <a
+            href={checkoutUrl}
+            onClick={(e) => {
+              onCheckout?.();
+              track("checkout");
+              sessionStorage.removeItem("figurinha_sticker_url");
+              sessionStorage.removeItem("figurinha_sticker_id");
+              try { localStorage.setItem("figurinha_sticker_id", stickerId); } catch { /* ignore */ }
+              e.currentTarget.href = e.currentTarget.href + window.location.search;
+            }}
             className="w-full text-white font-bold text-xl md:text-2xl py-5 rounded-2xl
-              active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.15em] relative overflow-hidden"
+              active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.15em] relative overflow-hidden block text-center"
             style={{
               fontFamily: "var(--font-titulo)",
               background: "linear-gradient(135deg, #CE1126 0%, #ff2a47 50%, #CE1126 100%)",
               boxShadow: "0 6px 24px rgba(206,17,38,0.5), inset 0 1px 0 rgba(255,255,255,0.15)",
+              textDecoration: "none",
             }}
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
               {ctaText}
             </span>
-          </button>
+          </a>
 
           <p className="text-sm text-center mt-3" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(255,255,255,0.75)" }}>
             ✅ Incluye descarga en alta calidad

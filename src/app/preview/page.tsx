@@ -80,26 +80,15 @@ function PreviewContent() {
           MX$63.99
         </p>
 
-        <button
-          onClick={() => {
-            const checkoutUrl = process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/8x2eVdgWfcOB0FD7Qj5Vu02";
-            const p = new URLSearchParams(window.location.search);
-            const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck"];
-            const utms: string[] = [];
-            for (const key of utmKeys) {
-              const val = p.get(key) || (() => { try { return localStorage.getItem(key) || ""; } catch { return ""; } })();
-              if (val) utms.push(`${key}=${encodeURIComponent(val)}`);
-            }
-            const sep = checkoutUrl.includes("?") ? "&" : "?";
-            const utmStr = utms.length > 0 ? `&${utms.join("&")}` : "";
-            window.location.href = `${checkoutUrl}${sep}src=${stickerId}${utmStr}`;
-          }}
+        <a
+          href={process.env.NEXT_PUBLIC_CHECKOUT_URL || "https://buy.stripe.com/8x2eVdgWfcOB0FD7Qj5Vu02"}
+          onClick={(e) => { e.currentTarget.href = e.currentTarget.href + window.location.search; }}
           className="w-full bg-copa-green text-copa-white font-bold text-xl py-5 rounded-2xl
             shadow-lg hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.1em] text-center block"
-          style={{ fontFamily: "var(--font-titulo)" }}
+          style={{ fontFamily: "var(--font-titulo)", textDecoration: "none" }}
         >
           QUERO MINHA FIGURINHA
-        </button>
+        </a>
       </div>
     </main>
   );

@@ -13,7 +13,7 @@ interface ResultScreenProps {
   ctaText?: string;
 }
 
-export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckout, checkoutUrl: checkoutUrlProp, price, ctaText = "⚽ RECIBIR MI CROMO" }: ResultScreenProps) {
+export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckout, checkoutUrl: checkoutUrlProp, price, ctaText = "RECIBIR MI CROMO" }: ResultScreenProps) {
   const handleCheckout = () => {
     onCheckout?.();
     track("checkout");
